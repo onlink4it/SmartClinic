@@ -1,0 +1,33 @@
+{% extends 'Resellers/core.html' %}
+{% block body %}
+    <!-- /.login-logo -->
+    <div class="box">
+        <div class="box-header">
+            <p class="login-box-msg"><b>Sign up for 15 days trial</b></p>
+        </div>
+        <div class="box-body">
+            {% if error_message %}
+                <div class="alert alert-danger">
+                    <center>{{ error_message }}</center>
+                </div>
+            {% endif %}
+            <form action="#" method="post">
+                {% csrf_token %}
+                {% include 'Core/multi_form_template.html' %}
+
+                <input class="hidden" name="next" value="{{ request.GET.next }}">
+                <div class="row">
+                    <div class="col-xs-8">
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+            <!-- /.social-auth-links -->
+        </div>
+    </div>
+    <!-- /.login-box-body -->
+{% endblock %}

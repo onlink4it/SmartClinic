@@ -1,0 +1,42 @@
+{% extends 'Core/base.html' %}
+{% block body %}
+    <div class="well">
+        <form class="form-inline" method="post" action="#">
+            {% csrf_token %}
+        <label>Employee</label>
+            <select name="employee" class="form-control select2">
+                {% for x in employees %}
+                    <option value="{{ x.id }}">{{ x }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+
+    {% if employee %}
+        <div class="well">
+        <h4>
+            Employee {{ employee }} Balance : {{ balance.balance }}
+            <a href="{% url 'Accounts:withdraw_cash_from_employee' employee.id %}" class="btn btn-warning">
+                <i class="fa fa-money"></i> Withdraw
+            </a>
+        </h4>
+            <table class="table table-responsive table-hover">
+                <thead>
+                <td>Date</td>
+                <td>Amount</td>
+                <td>Comment</td>
+                </thead>
+                <tbody>
+                {% for x in report %}
+                    <tr>
+                        <td>{{ x.date }}</td>
+                        <td>{{ x.amount }}</td>
+                        <td>{{ x.comment }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}

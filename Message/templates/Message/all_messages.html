@@ -1,0 +1,65 @@
+{% extends 'Core/base.html' %}
+{% block body %}
+    <div class="well">
+    <h4><i class="fa fa-calendar"></i> الفترة الزمنية</h4>
+    <form class="form-inline" action="#" method="GET">
+        من:
+        <input type="date" name="from_date" value="{{ default_from }}" class="form-control">
+        إلي:
+        <input type="date" name="to_date" value="{{ this_day }}" class="form-control">
+        <button type="submit" class="btn btn-info"><i class="fa fa-search"></i> </button>
+    </form>
+    </div>
+    <div class="panel">
+        <div class="panel-heading">
+            <i class="fa fa-envelope"></i>
+            صندوق الرسائل
+        </div>
+        <div class="panel-body">
+            <table class="table table-responsive table-hover" id="example1">
+                <thead>
+                <tr>
+                    <td>
+                        #
+                    </td>
+                    <td>
+                        المرسل
+                    </td>
+                    <td>
+                        المرسل إليه
+                    </td>
+                    <td style="width: 70%;">
+                        العنوان
+                    </td>
+                    <td>
+                        التاريخ
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for x in messages %}
+                    <tr {% if not x.read %}class='bg-primary'{% endif %}
+                        onclick="window.document.location='{% url 'Message:read_message' x.id %}';">
+                        <td>
+                            {{ x.id }}
+                        </td>
+                        <td>
+                            {{ x.sender.get_full_name }}
+                        </td>
+                        <td>
+                            {{ x.receiver.get_full_name }}
+                        </td>
+                        <td>
+                            {{ x.title }}
+                        </td>
+                        <td>
+                            {{ x.date }}
+                        </td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

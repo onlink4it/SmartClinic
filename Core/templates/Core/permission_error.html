@@ -1,0 +1,14 @@
+{% extends 'Core/base.html' %}
+{% block body %}
+
+    <div class="alert alert-dismissible alert-danger center-item center-text">
+        {{ message }}
+        <h2 class="center-text">403: Forbidden</h2>
+        <br>
+        <button onclick="goBack()" class="btn btn-danger">Click Here To Go To Previous Page</button>
+    </div>
+    <script>
+        function goBack() {
+            window.history.back();
+        }</script>
+{% endblock %}

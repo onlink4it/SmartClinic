@@ -1,0 +1,54 @@
+{% extends 'Core/base.html' %}
+{% block body %}
+    <div class="well">
+        <form class="form-inline" method="post" action="#">
+            {% csrf_token %}
+        <label>From:</label>
+            <input name="from_date" value="{{ from_date }}" class="form-control" type="date">
+        <label>To:</label>
+            <input name="to_date" value="{{ to_date }}" class="form-control" type="date">
+        <label>Clinic:</label>
+            <select name="clinic" class="form-control select2" multiple>
+                <option>All</option>
+                {% for x in clinics %}
+                    <option value="{{ x.id }}">{{ x }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+    {% if report %}
+        <div class="well">
+            <table class="table table-responsive table-hover" id="table1">
+                <thead>
+                <td>Date</td>
+                <td class="bg-success">Income</td>
+                <td class="bg-danger">Outcome</td>
+                <td>Comment</td>
+                <td>Clinic</td>
+                <td>By</td>
+                </thead>
+                <tbody>
+                {% for x in report %}
+                    <tr>
+                        <td>{{ x.date }}</td>
+                        <td class="bg-success">{{ x.income }}</td>
+                        <td class="bg-danger">{{ x.outcome }}</td>
+                        <td>{{ x.comment }}</td>
+                        <td>{{ x.clinic }}</td>
+                        <td>{{ x.done_by.get_full_name }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            <tfoot class="bg-purple">
+            <td>Total</td>
+            <td>{{ detailed.income }}</td>
+            <td>{{ detailed.outcome }}</td>
+            <td>{{ detailed.total }}</td>
+            <td></td>
+            <td></td>
+            </tfoot>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}

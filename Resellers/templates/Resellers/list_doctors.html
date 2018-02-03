@@ -1,0 +1,59 @@
+{% extends 'Resellers/core.html' %}
+{% block body %}
+    <a href="{% url 'Resellers:register_doctor' %}" class="btn btn-flat btn-primary">
+        <i class="fa fa-plus-circle"></i> New Doctor
+    </a>
+    <div class="box box-primary">
+        <table class="table table-hover table-responsive">
+            <thead>
+            <td>
+                #
+            </td>
+            <td>
+                Username
+            </td>
+            <td>
+                Name
+            </td>
+            <td>
+                Mobile
+            </td>
+            <td>
+                Speciality
+            </td>
+            <td>
+                Assistants
+            </td>
+            <td>
+                Clinics
+            </td>
+            <td>
+                Patients
+            </td>
+            <td>
+                Created On
+            </td>
+            <td>
+                Expiration
+            </td>
+            </thead>
+            <tbody>
+            {% for x in doctors %}
+                <tr class="{% if x.get_days_left <= 15 and x.get_days_left >= 0 %}bg-warning{% elif x.get_days_left < 0 %}bg-danger{% endif %}">
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ x.name }}</td>
+                    <td>{{ x.admin.get_full_name }}</td>
+                    <td>{{ x.mobile }}</td>
+                    <td>{{ x.get_specialty_display }}</td>
+                    <td>{{ x.users.all.count }}</td>
+                    <td>{{ x.admin.clinic_set.all.count }}</td>
+                    <td>{{ x.patient_set.all.count }}</td>
+                    <td>{{ x.created_on.isoformat }}</td>
+                    <td><label class="label {% if x.get_days_left <= 15 and x.get_days_left >= 0 %}label-warning{% elif x.get_days_left < 0 %}label-danger{% else %}label-success{% endif %}">{{ x.expiration.isoformat }}</label> </td>
+                    <td><a href="{% url 'Resellers:view_doctor' x.id %}" class="btn btn-sm btn-flat btn-info"><i class="fa fa-eye"></i> </a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

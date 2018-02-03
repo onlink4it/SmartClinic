@@ -1,0 +1,25 @@
+{% extends 'Core/base.html' %}
+{% block head %}
+    {{ form1.media }}
+{% endblock %}
+{% block body %}
+    <h4>
+        {{ title }}
+    </h4>
+    <form class="form-horizontal" method="post" action="#" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>المرسل إليه:</label>
+        {{ msg.sender }}
+        <br>
+        <label>
+            العنوان:
+        </label>
+        RE: {{ msg.title }}
+        <input type="hidden" name="receiver" value="{{ msg.sender.id }}">
+        <input type="hidden" name="title" value="RE: {{ msg.title }}">
+        {% include 'Core/multi_form_template.html' %}
+        <button class="btn btn-success" type="submit" title="حفظ">
+            <i class="fa fa-save"></i>
+        </button>
+    </form>
+{% endblock %}

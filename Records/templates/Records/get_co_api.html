@@ -1,0 +1,9 @@
+{% extends 'Core/empty_base.html' %}
+{% block body %}
+    <select name="co" class="form-control select2" multiple=""
+            id="id_co" tabindex="-1" aria-hidden="true">
+        {% for x in all %}
+            <option value="{{ x.id }}">{{ x }}</option>
+        {% endfor %}
+    </select>
+{% endblock %}

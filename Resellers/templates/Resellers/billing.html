@@ -1,0 +1,63 @@
+{% extends 'Resellers/core.html' %}
+{% block body %}
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            {% if request.user.reseller_set.all.0.credit >= 0 %}
+                <span class="info-box-icon bg-green">
+                <i class="ion ion-happy-outline"></i>
+            </span>
+            {% else %}
+                <span class="info-box-icon bg-red">
+                <i class="ion ion-sad-outline"></i>
+            </span>
+            {% endif %}
+
+            <div class="info-box-content">
+                <span class="info-box-text">Balance</span>
+                <span class="info-box-number">{{ request.user.reseller_set.all.0.credit }}</span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header"><i class="fa fa-list-alt"></i> My Transactions</div>
+            <div class="box-body">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                    <td>#</td>
+                    <td>Date</td>
+                    <td>Service</td>
+                    <td>Comment</td>
+                    <td>Amount</td>
+                    <td>After Discount</td>
+                    <td>Discount</td>
+                    </thead>
+                    <tbody>
+                    {% for x in transactions %}
+                        <tr>
+                            <td>{{ x.id }}</td>
+                            <td>{{ x.date.date.isoformat }}</td>
+                            <td>{{ x.customer_transaction.instance }} - {{ x.customer_transaction.service }}</td>
+                            <td>{{ x.comment }}</td>
+                            <td>{{ x.customer_transaction.amount }}</td>
+                            <td>{{ x.amount }}</td>
+                            <td>{{ x.discount }}</td>
+                            <td>
+                                <a href="{% url 'Resellers:print_receipt' x.id %}"
+                                   class="btn btn-sm btn-flat btn-warning"
+                                   target="_blank">
+                                    <i class="fa fa-print"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

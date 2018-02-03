@@ -1,0 +1,54 @@
+{% extends 'SuperAdmin/base.html' %}
+{% block body %}
+    <a href="{% url 'SuperAdmin:new_reseller' %}" class="btn btn-primary btn-flat"><i class="fa fa-plus-circle"></i> New
+        Reseller</a>
+    <div class="box box-primary">
+        <div class="box-header">Resellers</div>
+        <div class="box-body table-responsive">
+            <table class="table table-responsive table-hover">
+                <thead>
+                <td>#</td>
+                <td>Name</td>
+                <td>Phone</td>
+                <td>Number Of Doctors</td>
+                <td></td>
+                </thead>
+                <tbody>
+                {% for x in resellers %}
+                    <tr>
+                        <td>{{ x.id }}</td>
+                        <td>{{ x.user.get_full_name }}</td>
+                        <td>{{ x.user.instance_admin.all.0.mobile }}</td>
+                        <td>{{ x.user.Reseller.all.count }}</td>
+                        <td>
+                            <a href="{% url 'SuperAdmin:view_reseller' x.id %}" class="btn btn-sm btn-flat btn-info">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                            <a href="{% url 'Core:login_as' x.user.id %}" class="btn btn-sm btn-flat btn-danger">
+                                <i class="fa fa-sign-in"></i>
+                            </a>
+                            <a href="{% url 'SuperAdmin:edit_reseller' x.id %}" class="btn btn-sm btn-flat btn-success">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            {% if x.user.is_active %}
+                                <a href="{% url 'SuperAdmin:lock_reseller' x.id %}" class="btn btn-sm btn-flat btn-warning">
+                                    <i class="fa fa-lock"></i>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'SuperAdmin:unlock_reseller' x.id %}"
+                                   class="btn btn-sm btn-flat btn-warning">
+                                    <i class="fa fa-unlock"></i>
+                                </a>
+                            {% endif %}
+                            <a href="{% url 'SuperAdmin:remove_reseller' x.id %}" class="btn btn-sm btn-flat btn-danger">
+                                <i class="fa fa-remove"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+{% endblock %}

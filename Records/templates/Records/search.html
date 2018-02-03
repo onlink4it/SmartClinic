@@ -1,0 +1,158 @@
+{% extends 'Core/base.html' %}
+{% block body %}
+    {% if request.user.is_superuser %}
+        {% for x in results %}
+            <div class="modal fade" id="{{ x.id }}">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">Confirmation</div>
+                        <div class="modal-body">
+                            You are going to delete patient
+                            ID: {{ x.code }}
+                            <br>
+                            Name: {{ x.name }}
+                            <br>
+                            Are you sure?
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{% url 'Records:delete_patient' x.id %}" class="btn btn-danger">Yes</a>
+                            <button class="btn btn-default" data-toggle="modal" data-target="#{{ x.id }}">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <h4 class="center-text">
+        <i class="fa fa-search"></i> {{ title }}
+    </h4>
+    {% if not search %}
+        <a href="{% url 'Records:add_patient' %}" class="btn btn-primary">
+            <i class="fa fa-plus-circle"></i>
+            Add Patient
+        </a>
+        <br>
+    {% endif %}
+    <form class="col-lg-6 col-md-6 col-sm-12 col-xs-12" action="#" method="post">
+        {% csrf_token %}
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-mobile"></i> </span>
+            <input type="number" class="form-control" name="id">
+            <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+            </span>
+        </div>
+    </form>
+    <form class="col-lg-6 col-md-6 col-sm-12 col-xs-12" action="#" method="post">
+        {% csrf_token %}
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-user"></i> </span>
+            <input type="text" class="form-control" name="name">
+            <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+            </span>
+        </div>
+    </form>
+    {% if search %}
+        <div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12 table-respomsive">
+            <table class="table table-responsive table-striped">
+                <thead>
+                <tr>
+                    <td>
+                        #
+                    </td>
+                    <td>
+                        Name:
+                    </td>
+                    <td>
+                        Address:
+                    </td>
+                    <td>
+                        Phone:
+                    </td>
+                    <td>
+                        Action
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for x in results %}
+                    <tr>
+                        <td>
+                            {{ x.code }}
+                        </td>
+                        <td>
+                            {{ x.name }}
+                        </td>
+                        <td>
+                            {{ x.address }}
+                        </td>
+                        <td>
+                            {{ x.phone }}
+                        </td>
+                        <td>
+                            <div class="btn-group-sm">
+                                <a href="{% url 'Records:view_patient' x.id %}" class="btn-sm btn-info" title="عرض">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                {% if request.user.is_superuser %}
+                                    <a class="btn-sm btn-danger" data-toggle="modal" data-target="#{{ x.id }}"
+                                       title="حذف">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% if not results %}
+                </tbody>
+                </table>
+                No Results Found ..
+                <br>
+                <a href="{% url 'Records:add_patient' %}" class="btn btn-primary">
+                    <i class="fa fa-plus-circle"></i> Add Patient
+                </a>
+            {% endif %}
+            </tbody>
+            </table>
+
+        </div>
+
+            {% if results.has_other_pages %}
+                <ul class="pagination center-item">
+                    {% if results.has_previous %}
+                        <li><a href="?page={{ results.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in results.paginator.page_range %}
+                        {% if results.number == i %}
+                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if results.has_next %}
+                        <li><a href="?page={{ results.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+    {% endif %}
+
+{% endblock %}
+{% block js %}
+    <script type="text/javascript">
+        function clicked() {
+            return confirm('Are you sure to delete ?');
+        }
+    </script>
+{% endblock %}

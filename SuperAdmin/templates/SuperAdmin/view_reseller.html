@@ -1,0 +1,225 @@
+{% extends 'SuperAdmin/base.html' %}
+{% block body %}
+    <div class="box box-primary">
+        <div class="box-header">Reseller Info</div>
+        <div class="box-body table-responsive">
+            <table class="table table-hover table-responsive">
+                <tr>
+                    <td>
+                        First Name
+                    </td>
+                    <td>
+                        {{ reseller.user.first_name }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Last Name
+                    </td>
+                    <td>
+                        {{ reseller.user.last_name }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Username
+                    </td>
+                    <td>
+                        {{ reseller.user.username }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Mobile
+                    </td>
+                    <td>
+                        {{ reseller.user.instance_admin.all.0.mobile }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Last Login
+                    </td>
+                    <td>
+                        {{ reseller.user.online_set.all.0.last_update|timesince }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="box box-primary">
+        <div class="box-header">Accounting Info</div>
+        <div class="box-body">
+            <table class="table table-hover table-responsive">
+                <tr>
+                    <td>
+                        Join Date
+                    </td>
+                    <td>
+                        {{ reseller.date }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Percentage On First Payment
+                    </td>
+                    <td>
+                        {{ reseller.percentage_on_first }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Percentage On Renewal
+                    </td>
+                    <td>
+                        {{ reseller.percentage_on_renewal }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Allow Negative Balance
+                    </td>
+                    <td>
+                        {% if reseller.allow_negative_balance %}
+                            <i class="fa fa-check"></i>
+                        {% else %}
+                            <i class="fa fa-remove"></i>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Max. Negative Balance
+                    </td>
+                    <td>
+                        {{ reseller.max_negative_balance }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Credit
+                    </td>
+                    <td>
+                        {{ reseller.calculate_credit }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="box box-primary">
+        <div class="box-header">Doctors</div>
+        <div class="box-body">
+            <table class="table table-hover table-responsive">
+                <thead>
+                <td>
+                    #
+                </td>
+                <td>
+                    Username
+                </td>
+                <td>
+                    Name
+                </td>
+                <td>
+                    Mobile
+                </td>
+                <td>
+                    Speciality
+                </td>
+                <td>
+                    Created On
+                </td>
+                <td>
+                    Expiration
+                </td>
+                <td>
+                    Reseller
+                </td>
+                </thead>
+                <tbody>
+                {% for x in reseller.user.Reseller.all %}
+                    <tr class="{% if x.get_days_left <= 15 and x.get_days_left >= 0 %}bg-warning{% elif x.get_days_left < 0 %}bg-danger{% endif %}">
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ x.name }}</td>
+                        <td>{{ x.admin.get_full_name }}</td>
+                        <td>{{ x.mobile }}</td>
+                        <td>{{ x.get_specialty_display }}</td>
+                        <td>{{ x.created_on.isoformat }}</td>
+                        <td>{{ x.reseller }}</td>
+                        <td><label
+                                class="label {% if x.get_days_left <= 15 and x.get_days_left >= 0 %}label-warning{% elif x.get_days_left < 0 %}label-danger{% else %}label-success{% endif %}">{{ x.expiration.isoformat }}</label>
+                        </td>
+                        <td>
+                            <a href="{% url 'SuperAdmin:view_doctor' x.id %}" class="btn btn-sm btn-flat btn-info">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                            <a href="{% url 'Core:login_as' x.admin.id %}" class="btn btn-sm btn-flat btn-danger">
+                                <i class="fa fa-sign-in"></i>
+                            </a>
+                            <a href="{% url 'SuperAdmin:edit_doctor' x.id %}" class="btn btn-sm btn-flat btn-success">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a href="{% url 'SuperAdmin:change_user_password' x.admin.id %}"
+                               class="btn btn-sm btn-flat btn-warning">
+                                <i class="fa fa-asterisk"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="box box-primary">
+        <div class="box-header">Reseller Transaction</div>
+        <div class="box-body">
+            <table class="table table-hover table-responsive">
+                <thead>
+                <td>#</td>
+                <td>Date</td>
+                <td>Amount</td>
+                <td>Service</td>
+                <td>Doctor</td>
+                </thead>
+                <tbody>
+                {% for x in reseller.user.customertransaction_set.all %}
+                    <tr>
+                        <td>{{ x.id }}</td>
+                        <td>{{ x.date }}</td>
+                        <tD>{{ x.amount }}</tD>
+                        <td>{{ x.service }}</td>
+                        <td>{{ x.instance }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="box box-primary">
+        <div class="box-header">Customer Transactions</div>
+        <div class="box-body">
+            <table class="table table-hover table-responsive">
+                <thead>
+                <td>#</td>
+                <td>Amount</td>
+                <td>Service</td>
+                <td>Doctor</td>
+                </thead>
+                <tbody>
+                {% for x in reseller.user.customertransaction_set.all %}
+                    <tr>
+                        <td>{{ x.id }}</td>
+                        <tD>{{ x.amount }}</tD>
+                        <td>{{ x.service }}</td>
+                        <td>{{ x.instance }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

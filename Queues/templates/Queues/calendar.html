@@ -1,0 +1,53 @@
+{% extends 'Core/base.html' %}
+{% block body %}
+    <div class="panel col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="panel-heading">
+            <i class="fa fa-calendar"></i> Calendar Search
+            <br>
+            <form class="form-inline" action="#">
+                <label>Date:</label>
+                <input type="date" name="date" class="form-control" value="{{ this_day }}">
+                <button class="btn-sm btn-info"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+        <div class="panel-body">
+            <table class="table table-responsive">
+                <thead>
+                <td>
+                    #
+                </td>
+                <td>
+                    Patient
+                </td>
+                <td>
+                    Task
+                </td>
+                <td>
+                    Clinic
+                </td>
+                <td>
+                    Action
+                </td>
+                </thead>
+                <tbody>
+                {% for x in tasks %}
+                    <tr>
+                        <td>
+                            {{ forloop.counter }}
+                        </td>
+                        <td>
+                            {{ x.patient.name }}
+                        </td>
+                        <td>
+                            {{ x.get_type }}
+                        </td>
+                        <td>
+                            {{ x.clinic }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'Resellers/core.html' %}
+{% block body %}
+
+    <div class="box box-primary">
+        <div class="box-header"><i class="list-th"></i> Choose Service</div>
+        <div class="box-body">
+            {% for x in services %}
+                <a class="btn btn-primary btn-flat" href="{% url 'Resellers:confirm_renewal' doctor.id x.id %}">
+                    {{ x.name }}
+                    <br>
+                    {{ x.allowed_size }} GB
+                    <br>
+                    {{ x.price }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

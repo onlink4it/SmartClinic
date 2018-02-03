@@ -1,0 +1,71 @@
+{% extends 'Core/base.html' %}
+{% block body %}
+    {% for x in clinics %}
+
+        <div class="modal fade" id="{{ x.id }}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">Confirmation</div>
+                    <div class="modal-body">
+                        You are going to delete Clinic
+                        <br>
+                        ID: {{ x.id }}
+                        <br>
+                        Name: {{ x.name }}
+                        <br>
+                        Are you sure?
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{% url 'Queues:delete_clinic' x.id %}" class="btn btn-danger">Yes</a>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#{{ x.id }}">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="col-md-12">
+        <a href="{% url 'Queues:new_clinic' %}" class="btn btn-info">
+            <i class="fa fa-plus-circle"></i> Add Clinic
+        </a>
+        <div class="well col-md-12">
+            <table class="table table-responsive table-hover" id="table1">
+                <thead>
+                <td>Clinic</td>
+                <td>Phone</td>
+                <td>Address</td>
+                </thead>
+                <tbody>
+                {% for x in clinics %}
+                    <tr>
+                        <td>
+                            {{ x.name }}
+                        </td>
+                        <td>
+                            {{ x.phone }}
+                        </td>
+                        <td>
+                            {{ x.address }}
+                        </td>
+                        <td>
+                            {{ x.examination_fees }}
+                        </td>
+                        <td>
+                            {{ x.consultant_fees }}
+                        </td>
+                        <td>
+                            <div class="btn-group-sm">
+                                <a href="{% url 'Queues:edit_clinic' x.id %}" class="btn-sm btn-info">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a data-toggle="modal" data-target="#{{ x.id }}" class="btn-sm btn-danger">
+                                    <i class="fa fa-remove"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'Core/base.html' %}
+{% block body %}
+    <h4 class="center-text">{{ clinic }}</h4>
+    <a href="{% url 'Queues:assign_date_for_clinic' clinic.id %}" class="btn btn-primary">
+        <i class="fa fa-plus-circle"></i> كشف جديد
+    </a>
+    <a href="{% url 'Records:add_patient_for_clinic' clinic.id %}" class="btn btn-primary">
+        <i class="fa fa-user-plus"></i> مريض جديد
+    </a>
+    <a href="{% url 'Accounts:add_expense_for_clinic' clinic.id %}" class="btn btn-danger">
+        <i class="fa fa-minus-circle"></i> مصروفات
+    </a>
+    <a href="{% url 'Accounts:add_income_for_clinic' clinic.id %}" class="btn btn-success">
+    <i class="fa fa-plus-circle"></i> دخل عام
+    </a>
+    <br>
+    <div class="panel col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="panel-heading">
+            <i class="fa fa-calendar"></i> Calendar
+        </div>
+        <div class="panel-body">
+            <table class="table table-responsive">
+                <thead>
+                <td>
+                    #
+                </td>
+                <td>
+                    Patient
+                </td>
+                <td>
+                    Task
+                </td>
+                <td>
+                    Clinic
+                </td>
+                <td>
+                    Action
+                </td>
+                </thead>
+                <tbody>
+                {% for x in tasks %}
+                    <tr>
+                        <td>
+                            {{ forloop.counter }}
+                        </td>
+                        <td>
+                            <a href="{% url 'Records:view_patient_for_clinic' clinic.id x.patient.id %}">{{ x.patient.name }}</a>
+                        </td>
+                        <td>
+                            {{ x.get_type }}
+                        </td>
+                        <td>
+                            {{ x.clinic }}
+                        </td>
+                        <td>
+                            <a href="{% url 'Queues:add_to_queue_for_clinic' clinic.id x.id %}" class="btn-sm btn-success"><i
+                                    class="fa fa-arrow-right"></i> </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="panel col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="panel-heading">
+            <i class="fa fa-list-ol"></i> Queues
+        </div>
+        <div class="panel-body">
+            <table class="table table-responsive">
+                <thead>
+                <td>order</td>
+                <td>Patient</td>
+                <td>Type</td>
+                <td></td>
+                </thead>
+                <tbody>
+                {% for x in queues %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <a href="{% url 'Records:view_patient_for_clinic' clinic.id x.calendar.patient.id %}">{{ x.calendar.patient.name }}</a>
+                        </td>
+                        <td>{{ x.calendar.get_type }}</td>
+                        <td>
+                            <a href="{% url 'Queues:remove_from_queue_for_clinic' clinic.id x.id %}" class="btn-sm btn-success">
+                                <i class="fa fa-check"></i>
+                            </a>
+                            {% if x.calendar.task_type == 1 %}
+                                <a href="{% url 'Queues:assign_consultant_for_clinic' clinic.id x.id %}" class="btn-sm btn-warning"
+                                   title="تحديد ميعاد الإعادة">
+                                    <i class="fa fa-calendar"></i>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'Queues:assign_examination_for_clinic' clinic.id x.id %}" class="btn-sm btn-warning"
+                                   title="تحديد ميعاد كشف جديد">
+                                    <i class="fa fa-calendar"></i>
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

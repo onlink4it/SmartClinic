@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/print.css' %}">
+    <style>
+
+        body {
+
+            width: 297mm;
+            height: 210mm;
+            page-break-after: avoid;
+            page-break-before: avoid;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .page {
+            padding-top: 3cm;
+            margin: 0.2cm 0.2cm 0.2cm 0.2cm;
+            width: 14.8cm;
+            height: 20.4cm;
+            max-width: 14.8cm;
+            max-height: 21cm;
+            border: 1px solid;
+        }
+
+        .cell {
+            height: 3cm;
+            width: 5.25cm;
+            max-width: 5.25cm;
+            max-height: 3cm;
+            font-size: 10px;
+            float: left;
+        }
+
+        .row {
+            width: 100%;
+        }
+
+        .pull-left {
+            position: relative;
+            left: 0px;
+        }
+
+        .pull-right {
+            position: relative;
+            right: 0px;
+        }
+
+        @page {
+            size: A4 landscape;
+            margin: 30mm 45mm 30mm 45mm;
+            padding: 0;
+        }
+
+        @media print {
+            html, body {
+                width: 297mm;
+                height: 210mm;
+                page-break-after: avoid;
+                page-break-before: avoid;
+            }
+
+            @page {
+                width: 210mm;
+                height: 290mm;
+                margin: 30mm 45mm 30mm 45mm;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            /* ... the rest of the rules ... */
+        }
+
+    </style>
+    {% block head %}
+
+    {% endblock %}
+</head>
+<body dir="rtl">
+<div class="page">
+    {% block body %}
+
+    {% endblock %}
+</div>
+<!-- jQuery 2.2.3 -->
+<script src="{% static 'plugins/jQuery/jquery-2.2.3.min.js' %}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<script src='{% static "plugins/select2/select2.full.min.js" %}'></script>
+<script src='{% static "plugins/select2403/select2403/dist/js/select2.full.js" %}'></script>
+
+<script>
+    $('document').ready(function () {
+        $(".multiselect2").select2({
+            multiple: true
+        });
+        $(".select2").select2();
+    });
+</script>
+
+<script>window.print();</script>
+{% block js %}
+
+{% endblock %}
+</body>
+</html>

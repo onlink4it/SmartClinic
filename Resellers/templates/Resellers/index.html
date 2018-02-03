@@ -1,0 +1,79 @@
+{% extends 'Resellers/core.html' %}
+{% block body %}
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="ion ion ion-ios-people-outline"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Total</span>
+                <span class="info-box-number">{{ request.user.Reseller.all.count }}</span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-check"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Active </span>
+                <span class="info-box-number">{{ active }}</span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="fa fa-warning"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Expires Soon</span>
+                <span class="info-box-number">{{ expire_soon }}</span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-remove"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Expired</span>
+                <span class="info-box-number">{{ non_active }}</span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <div class="col-lg-6 col-sm-6 col-xs-12">
+        <div class="box box-info">
+            <div class="box-header">
+                Latest Invoices
+            </div>
+            <div class="box-body">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                    <td></td>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-sm-6 col-xs-12">
+        <div class="box box-warning">
+            <div class="box-header">
+                Expires Soon
+            </div>
+            <div class="box-body">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                    <td></td>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

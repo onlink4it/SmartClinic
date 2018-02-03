@@ -1,0 +1,554 @@
+{% extends 'Core/base.html' %}
+{% block head %}
+    {{ form.media }}
+{% endblock %}
+{% block body %}
+    <div class="modal" id="New_CO">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form class="form-horizontal new_clinic_form" method="post"
+                      action="" id="new_clinic_form" enctype="multipart/form-data">
+                    <div class="modal-header">New CO.</div>
+                    <div class="modal-body">
+                        {% csrf_token %}
+                        {{ form2 }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#New_CO">Add
+                        </button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#New_CO">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <h4 class="center-text">
+        <i class="fa fa-pencil"></i> Edit Patient - <b>Name:</b> {{ patient.name }}
+    </h4>
+    <a href="{% url 'Records:add_record_for_clinic' clinic_id patient.id %}" class="btn btn-primary">
+        <i class="fa fa-hospital-o"></i>
+        Add Record
+    </a>
+    <form class="form-horizontal" method="post" action="#" enctype="multipart/form-data">
+        {% csrf_token %}
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#personal_info">Personal Info</a></li>
+            <li><a data-toggle="tab" href="#co">CO</a></li>
+            <li><a data-toggle="tab" href="#relevant_family_history">Relevant Family History</a></li>
+            <li><a data-toggle="tab" href="#previous_obstetris_history">Previous Obstetris History</a></li>
+            <li><a data-toggle="tab" href="#investigations">Investigations</a></li>
+            <li><a data-toggle="tab" href="#hormones">Hormones</a></li>
+            <li><a data-toggle="tab" href="#laparoscopic_finding">Laparoscopic Finding</a></li>
+            <li><a data-toggle="tab" href="#records">Records</a></li>
+        </ul>
+        <div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="tab-content">
+                <div id="personal_info" class="tab-pane fade in active">
+                    <h5>
+                        Personal History
+                    </h5>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            Code
+                        </label>
+                        {{ form.code }}
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label>
+                            الإسم
+                        </label>
+                        {{ form.name }}
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label>
+                            السن
+                        </label>
+                        {{ form.age }}
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label>
+                            اسم الزوج
+                        </label>
+                        {{ form.husband_name }}
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label>
+                            المهنة
+                        </label>
+                        {{ form.job }}
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label>
+                            العنوان
+                        </label>
+                        {{ form.address }}
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label>
+                            التليفون
+                        </label>
+                        {{ form.phone }}
+                    </div>
+                </div>
+
+                <div id="co" class="tab-pane fade">
+                    <h5>
+                        CO.
+                    </h5>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            CO:
+                            <a data-toggle="modal" data-target="#New_CO">
+                                <i class="fa fa-plus"></i> New CO.
+                            </a>
+                        </label>
+                        <div id="complain">
+                            {{ form.co }}
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label>
+                            L.N.M.B:
+                        </label>
+                        {{ form.l_n_m_b }}
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label>
+                            E.D.D:
+                        </label>
+                        <input type="text" id="e_d_d" class="form-control" readonly></input>
+                        {{ form.e_d_d }}
+                    </div>
+                </div>
+
+                <div id="relevant_family_history" class="tab-pane fade">
+                    <h5>
+                        Relevant Family History
+                    </h5>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <label>
+                            Twins:
+                        </label>
+                        {{ form.twins }}
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <label>
+                            Diabetes:
+                        </label>
+                        {{ form.diabetes }}
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <label>
+                            CFM:
+                        </label>
+                        {{ form.cfm }}
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <label>
+                            Hypertension:
+                        </label>
+                        {{ form.hypertention }}
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <label>
+                            CANCER:
+                        </label>
+                        {{ form.cancer }}
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <label>
+                            CNS:
+                        </label>
+                        {{ form.cns }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            Operations:
+                        </label>
+                        {{ form.operations }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            Allergies(DRUGS):
+                        </label>
+                        {{ form.drugs }}
+                    </div>
+                </div>
+
+                <div id="previous_obstetris_history" class="tab-pane fade">
+                    <h5>
+                        Previous Obstetris History
+                    </h5>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <label>
+                            Abortion:
+                        </label>
+                        {{ form.abortion }}
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <label>
+                            Ectopic:
+                        </label>
+                        {{ form.ectopic }}
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <label>
+                            V.Mole:
+                        </label>
+                        {{ form.v_mole }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            Deliveries:
+                        </label>
+                        {{ form.deliveries }}
+                    </div>
+                    <h5>Living Children</h5>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label>
+                            XY:
+                        </label>
+                        {{ form.xy }}
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label>
+                            XX:
+                        </label>
+                        {{ form.xx }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            Still Birth:
+                        </label>
+                        {{ form.still_birth }}
+                    </div>
+                </div>
+
+                <div id="investigations" class="tab-pane fade">
+                    <h5>
+                        Investigations
+                    </h5>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            Blood Group:
+                        </label>
+                        {{ form.blood_group }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            RH:
+                        </label>
+                        {{ form.rh }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            CBC:
+                        </label>
+                        {{ form.cbc }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            HB%:
+                        </label>
+                        {{ form.hb }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            Taxoplasma:
+                        </label>
+                        {{ form.taxoplasma }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            Rubella:
+                        </label>
+                        {{ form.rubella }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            Others:
+                        </label>
+                        {{ form.other_investigation }}
+                    </div>
+                </div>
+
+                <div id="hormones" class="tab-pane fade">
+                    <h5>
+                        Hormones
+                    </h5>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            FSH:
+                        </label>
+                        <br>
+                        {{ form.fsh }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            LH:
+                        </label>
+                        <br>
+                        {{ form.lh }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            E2:
+                        </label>
+                        <br>
+                        {{ form.e2 }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            TSH:
+                        </label>
+                        <br>
+                        {{ form.tsh }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            HS:
+                        </label>
+                        <br>
+                        {{ form.hs }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            Male F.:
+                        </label>
+                        <br>
+                        {{ form.male_f }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            Others:
+                        </label>
+                        <br>
+                        {{ form.other_hermones }}
+                    </div>
+                </div>
+
+                <div id="laparoscopic_finding" class="tab-pane fade">
+                    <h5>
+                        Laparoscopic Finding
+                    </h5>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            UT:
+                        </label>
+                        <br>
+                        {{ form.ut }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            RT. Tube:
+                        </label>
+                        <br>
+                        {{ form.rt_tube }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            LT. Tube:
+                        </label>
+                        <br>
+                        {{ form.lt_tube }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            RT. OV:
+                        </label>
+                        <br>
+                        {{ form.rt_ov }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            LT. OV:
+                        </label>
+                        <br>
+                        {{ form.lt_ov }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            DP:
+                        </label>
+                        <br>
+                        {{ form.dp }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            Others:
+                        </label>
+                        <br>
+                        {{ form.other_laprospic_finding }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>
+                            Report:
+                        </label>
+                        <br>
+                        {{ form.laprospic_report }}
+                        {% if patient.laprospic_report %}
+                            <div>
+                                <a href="{{ patient.laprospic_report.url }}" target="_blank">
+                                    <img src="{{ patient.laprospic_report.url }}"
+                                         alt="{{ patient.laprospic_report.name }}"
+                                         width="200px"
+                                    >
+                                    <br>
+                                    {{ patient.laprospic_report.name }}- - {{ patient.laprospic_report.size|filesizeformat }}
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div id="records" class="tab-pane fade">
+                    <h5>
+                        Records
+                    </h5>
+                    <table class="table table-responsive table-striped">
+                        <thead>
+                        <tr>
+                            <td>
+                                Date
+                            </td>
+                            <td>
+                                B/P
+                            </td>
+                            <td>
+                                Wt.
+                            </td>
+                            <td>
+                                Oedama
+                            </td>
+                            <td>
+                                Fundal Level
+                            </td>
+                            <td>
+                                U. Sugar
+                            </td>
+                            <td>
+                                U. Albumin
+                            </td>
+                            <td>
+                                Week
+                            </td>
+                            <td>
+                                HB%
+                            </td>
+                            <td>
+                                Comments, Complains
+                            </td>
+                            <td>
+                                Prescription
+                            </td>
+                            <td>
+
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for x in patient.patientrecord_set.all %}
+                            <tr>
+                                <td>
+                                    {{ x.date }}
+                                </td>
+                                <td>
+                                    {{ x.b_p }}
+                                </td>
+                                <td>
+                                    {{ x.weight }}
+                                </td>
+                                <td>
+                                    {{ x.oedama }}
+                                </td>
+                                <td>
+                                    {{ x.fundel_level }}
+                                </td>
+                                <td>
+                                    {{ x.urine_suger }}
+                                </td>
+                                <td>
+                                    {{ x.urine_albumin }}
+                                </td>
+                                <td>
+                                    {{ x.week }}
+                                </td>
+                                <td>
+                                    {{ x.h_b_percent }}
+                                </td>
+                                <td>
+                                    {{ x.comments_complains | safe }}
+                                </td>
+                                <td>
+                                    {% for y in x.prescription.all %}{{ y }}<br>{% endfor %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'Records:print_prescription' x.id %}" class="btn-sm btn-info"
+                                       title="طباعة" target="_blank">
+                                        <i class="fa fa-print"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <button class="btn btn-success col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <i class="fa fa-save"></i>
+            </button>
+        </div>
+    </form>
+{% endblock %}
+{% block js %}
+    <script>
+        $(function () {
+            $('form#new_clinic_form').on('submit', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'Records:new_co' %}",
+                    data: $('form.new_clinic_form').serialize(),
+                    success: function (response) {
+                        $('#New_CO').modal('hide');
+                        get_co();
+                    },
+                    error: function () {
+                        alert('Error');
+                    }
+                });
+                return false;
+            });
+        });
+
+        function get_co() {
+            var cos = $.ajax({
+                type: "GET",
+                url: "{% url 'Records:get_co_api' %}",
+                async: false,
+                success: function () {
+                }
+            }).responseText;
+            $('#complain').html(cos);
+        }
+    </script>
+    <script>
+
+        document.getElementById("id_l_n_m_b").onchange = function () {
+            setValue()
+        };
+
+
+        function setValue() {
+            var tt = document.getElementById('id_l_n_m_b').value;
+            var date = new Date(tt);
+            var newdate = new Date(date);
+            newdate.setDate(newdate.getDate() + 280);
+            var dd = newdate.getDate();
+            var mm = newdate.getMonth() + 1;
+            var y = newdate.getFullYear();
+            var someFormattedDate = y + '-' + mm + '-' + dd;
+            document.getElementById('e_d_d').value = someFormattedDate;
+        }
+    </script>
+{% endblock %}

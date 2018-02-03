@@ -1,0 +1,145 @@
+{% extends 'Core/base.html' %}
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-3">
+            <a href="{% url 'Message:send_message' %}" class="btn btn-primary btn-block margin-bottom">Compose</a>
+
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><i class="fa fa-folder"></i> Folders</h3>
+
+                    <div class="box-tools">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body no-padding">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="{% url 'Message:inbox' %}"><i class="fa fa-inbox"></i> Inbox
+                            <span class="label label-primary pull-right"></span></a></li>
+                        <li><a href="{% url 'Message:outbox' %}"><i class="fa fa-envelope-o"></i> Sent</a></li>
+                    </ul>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /. box -->
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><i class="fa fa-users"></i> Users</h3>
+                    <div class="box-tools">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                    <div class="box-body no-padding">
+                        <ul class="nav nav-pills nav-stacked">
+                        {% if request.user.is_superuser %}
+                            <li>
+                                <a href="">
+                                    {% if request.user.instance_admin.all.0.admin.online_set.all.0.get_status == 'Online' %}
+                                        <i class="fa fa-circle" style="color: green;"></i>
+                                    {% else %}
+                                        <i class="fa fa-circle-o"></i>
+                                    {% endif %}
+                                    {{ request.user.instance_admin.all.0.admin }}
+                                </a>
+                            </li>
+                            {% for x in request.user.instance_admin.all.0.users.all %}
+                                <li>
+                                    <a href="">
+                                        {% if x.online_set.all.0.get_status == 'Online' %}
+                                            <i class="fa fa-circle" style="color: green;"></i>
+                                        {% else %}
+                                            <i class="fa fa-circle-o"></i>
+                                        {% endif %}
+                                        {% if x.get_full_name %}{{ x.get_full_name }}{% else %}{{ x }}{% endif %}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        {% else %}
+                            <li>
+                                <a href="">
+                                    {% if request.user.instance_users.all.0.admin.online_set.all.0.get_status == 'Online' %}
+                                        <i class="fa fa-circle" style="color: green;"></i>
+                                    {% else %}
+                                        <i class="fa fa-circle-o"></i>
+                                    {% endif %}
+                                    {{ request.user.instance_users.all.0.admin }}
+                                </a>
+                            </li>
+                            {% for x in request.user.instance_users.all.0.users.all %}
+                                <li>
+                                    <a href="">
+                                        {% if x.online_set.all.0.get_status == 'Online' %}
+                                            <i class="fa fa-circle" style="color: green;"></i>
+                                        {% else %}
+                                            <i class="fa fa-circle-o"></i>
+                                        {% endif %}
+                                        {% if x.get_full_name %}{{ x.get_full_name }}{% else %}{{ x }}{% endif %}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Inbox</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <div class="mailbox-controls">
+                    </div>
+                    <!-- /.pull-right -->
+                </div>
+                <div class="table-responsive mailbox-messages">
+                    <table class="table table-hover table-responsive" id="table1">
+                        <thead>
+                        <tr>
+                            <td>#</td>
+                            <td>Sender</td>
+                            <td>Title</td>
+                            <td><i class="fa fa-paperclip"></i></td>
+                            <td>Date</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for x in messages %}
+                            <tr {% if not x.read %}class="bg-danger"{% endif %}>
+                                <td>{{ forloop.counter }}</td>
+                                <td class="mailbox-name">
+                                    <a href="{% url 'Message:read_message' x.id %}">
+                                        {% if x.sender.get_full_name %}
+                                            {{ x.sender.get_full_name }}
+                                        {% else %}
+                                            {{ x.sender }}
+                                        {% endif %}
+                                    </a>
+                                </td>
+                                <td class="mailbox-subject">
+                                    <b>{{ x.title }}</b>
+                                </td>
+                                <td class="mailbox-attachment">
+                                    {% if x.attachments_set.all.count >= 1 %}
+                                        <i class="fa fa-paperclip"></i>
+                                    {% endif %}
+                                </td>
+                                <td class="mailbox-date"><i class="fa fa-clock-o"></i> {{ x.date|timesince }} ago</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

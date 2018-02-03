@@ -1,0 +1,16 @@
+{% extends 'Records/Ladies/print_template.html' %}
+{% block body %}
+    <div class="header col-md-3 col-xs-12" style="text-align: left;">
+        <div class="col-md-6 col-sm-6 col-xs-6 info">التاريخ: {{ record.date.isoformat }}</div>
+        <div class="col-md-6 col-sm-6 col-xs-6 info">الاسم: {{ record.patient.name }}</div>
+        <div class="col-md-12 medicine">
+            <br>
+            <br>
+            {% for x in record.prescription.all %}
+                R/    {{ x }}<br><br>
+            {% endfor %}
+        </div>
+        <div class="col-md-12">{{ invoice_setting.footer1 }}</div>
+        <div class="col-md-12">{{ invoice_setting.footer2 }}</div>
+    </div>
+{% endblock %}

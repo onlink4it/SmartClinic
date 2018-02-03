@@ -1,0 +1,51 @@
+{% extends 'SuperAdmin/base.html' %}
+{% block body %}
+    <div class="box box-primary">
+        <div class="box-header">Patients</div>
+        <div class="box-body">
+            <table class="table table-responsive table-hover">
+                <thead>
+                <td>#</td>
+                <td>Name</td>
+                <td>Phone</td>
+                <td>Address</td>
+                <td>Doctor</td>
+                <td></td>
+                </thead>
+                <tbody>
+                {% for x in patients %}
+                    <tr>
+                        <td>{{ x.id }}</td>
+                        <td>{{ x.name }}</td>
+                        <td>{{ x.phone }}</td>
+                        <td>{{ x.address }}</td>
+                        <td>{{ x.instance }}</td>
+                        <td></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% if patients.has_other_pages %}
+                <ul class="pagination center-item">
+                    {% if patients.has_previous %}
+                        <li><a href="?page={{ patients.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in patients.paginator.page_range %}
+                        {% if patients.number == i %}
+                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if patients.has_next %}
+                        <li><a href="?page={{ patients.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'Core/empty_base.html' %}
+{% block body %}
+    <div class="container">
+        <div class="login-logo">
+            <a href="http://www.onlink4it.com/" target="_blank"><b>Smart Clinic </b>SC</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            {% if error_message %}
+                <div class="alert alert-danger">
+                    <center>{{ error_message }}</center>
+                </div>
+            {% endif %}
+            <div class="col-md-12">
+                <a href="{% url 'Core:register' %}" type="submit" class="btn btn-warning btn-block btn-flat">
+                    Register For 15 Days Trial
+                </a>
+            </div>
+            <p class="login-box-msg"><b>Sign in to start your session</b></p>
+            <form action="#" method="post">
+                {% csrf_token %}
+                <div class="form-group has-feedback">
+                    <input type="text" name="username" class="form-control" placeholder="Username">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" name="password" class="form-control" placeholder="Password">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+
+                <input class="hidden" name="next" value="{{ request.GET.next }}">
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="checkbox icheck">
+                            <label>
+                                <input type="checkbox"> Remember Me
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+            <!-- /.social-auth-links -->
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'Core/print_base.html' %}
+{% block body %}
+    <table class="table table-responsive table-hover">
+        <tr>
+            <td><b>Doctor</b></td>
+            <td>{{ trans.instance.id }} - {{ trans.instance.name }} - {{ trans.instance.admin.get_full_name }}</td>
+        </tr>
+        <tr>
+            <td><b>Service</b></td>
+            <td>{{ trans.service.name }}</td>
+        </tr>
+        <tr>
+            <td><b>Price</b></td>
+            <td>{{ trans.service.price }}</td>
+        </tr>
+        <tr>
+            <td><b>Subscription End</b></td>
+            <td>{{ trans.instance.expiration.isoformat }}</td>
+        </tr>
+        <tr>
+            <td><b>Comment</b></td>
+            <td>{{ trans.comment }}</td>
+        </tr>
+    </table>
+
+    <b>Date:</b> {{ trans.date.date.isoformat }} - <b>Time:</b> {{ trans.date.time }}
+    <br>
+    <b>Issued By</b>
+    <br>
+    {{ trans.done_by }}
+    <div class="no-print">
+    <a href="{% url 'Resellers:index' %}" class="btn btn-warning btn-flat"><i class="fa fa-home"></i> Back To Home</a>
+    </div>
+{% endblock %}

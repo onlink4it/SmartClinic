@@ -1,0 +1,151 @@
+{% extends 'Core/base.html' %}
+{% block head %}
+    {{ form.media }}
+{% endblock %}
+{% block body %}
+    <div class="modal" id="New_Medicine">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form class="form-horizontal new_clinic_form" method="post"
+                      action="" id="new_clinic_form">
+                    <div class="modal-header">New Medicine</div>
+                    <div class="modal-body">
+                        {% csrf_token %}
+                        {{ form2 }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#New_Medicine">Add</button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#New_Medicine">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <h4 class="center-text">
+        <i class="fa fa-hospital-o"></i>
+        Add Record - ID: {{ patient.id }} - Patient: {{ patient.name }}
+    </h4>
+    <a href="{% url 'Records:view_patient' patient.id %}" class="btn btn-primary">
+        <i class="fa fa-undo"></i>
+        Back To Patient
+    </a>
+    <form class="form-horizontal" method="post" action="#">
+        {% csrf_token %}
+        <div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <span class="label-danger">{{ form.b_p.errors }}</span>
+                <label>
+                    B/P
+                </label>
+                {{ form.b_p }}
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <span class="label-danger">{{ form.weight.errors }}</span>
+                <label>
+                    Weight
+                </label>
+                {{ form.weight }}
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <span class="label-danger">{{ form.oedama.errors }}</span>
+                <label>
+                    Oedama
+                </label>
+                {{ form.oedama }}
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <span class="label-danger">{{ form.fundel_level.errors }}</span>
+                <label>
+                    Fundal Level
+                </label>
+                {{ form.fundel_level }}
+            </div>
+            <h5>Urine</h5>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <span class="label-danger">{{ form.urine_suger.errors }}</span>
+                <label>
+                    Sugar
+                </label>
+                {{ form.urine_suger }}
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <span class="label-danger">{{ form.urine_albumin.errors }}</span>
+                <label>
+                    Albumin
+                </label>
+                {{ form.urine_albumin }}
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <span class="label-danger">{{ form.week.errors }}</span>
+                <label>
+                    Week
+                </label>
+                {{ form.week }}
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <span class="label-danger">{{ form.h_b_percent.errors }}</span>
+                <label>
+                    HB%
+                </label>
+                {{ form.h_b_percent }}
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <span class="label-danger">{{ form.comments_complain.errors }}</span>
+                <label>
+                    Comments-Complains
+                </label>
+                {{ form.comments_complain }}
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <span class="label-danger">{{ form.prescription.errors }}</span>
+                <label>
+                    Prescription
+                    <a data-toggle="modal" data-target="#New_Medicine">
+                        <i class="fa fa-plus"></i> New Medicine
+                    </a>
+                </label>
+
+                <div id="prescription">
+                    {{ form.prescription }}
+                </div>
+            </div>
+
+            <button class="btn btn-success col-lg-12 col-md-12 col-sm-12 col-xs-12" type="submit">
+                <i class="fa fa-save"></i>
+            </button>
+        </div>
+    </form>
+{% endblock %}
+{% block js %}
+    <script>
+        $(function () {
+            $('form#new_clinic_form').on('submit', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'Records:new_medicine' %}",
+                    data: $('form.new_clinic_form').serialize(),
+                    success: function () {
+                        $('#New_Medicine').modal('hide');
+                        get_medicine();
+                    },
+                    error: function () {
+                        alert('Error');
+                    }
+                });
+                return false;
+            });
+        });
+
+        function get_medicine() {
+            var medicines = $.ajax({
+                type: "GET",
+                url: "{% url 'Records:get_medicine_api' %}",
+                async: false,
+                success: function () {
+                }
+            }).responseText;
+            $('#prescription').html(medicines);
+        }
+    </script>
+{% endblock %}

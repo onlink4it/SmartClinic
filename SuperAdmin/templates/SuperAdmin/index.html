@@ -1,0 +1,109 @@
+{% extends 'SuperAdmin/base.html' %}
+{% block body %}
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <a href="">
+            <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="fa fa-user-circle-o"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Users</span>
+                    <span class="info-box-number">{{ users.count }}
+                        <small></small></span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </a>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <a href="{% url 'SuperAdmin:list_resellers' %}">
+            <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Resellers</span>
+                    <span class="info-box-number">{{ resellers.count }}
+                    <small></small></span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </a>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <a href="{% url 'SuperAdmin:list_doctors' %}">
+        <div class="info-box">
+            <span class="info-box-icon bg-purple"><i class="fa fa-user-md"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Doctors</span>
+                <span class="info-box-number">{{ doctors.count }}
+                    <small></small></span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+        </a>
+    </div>
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <a href="">
+        <div class="info-box">
+            <span class="info-box-icon bg-black"><i class="fa fa-user-o"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Patients</span>
+                <span class="info-box-number">{{ patients.count }}
+                    <small></small></span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+        </a>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <a href="">
+        <div class="info-box">
+            <span class="info-box-icon bg-orange"><i class="fa fa-medkit"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Medicines</span>
+                <span class="info-box-number">{{ medicines.count }}
+                    <small></small></span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+        </a>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <a href="">
+        <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-envelope"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Messages</span>
+                <span class="info-box-number">{{ messages.count }}
+                    <small></small></span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+        </a>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <a href="">
+        <div class="info-box">
+            <span class="info-box-icon bg-maroon"><i class="fa fa-shopping-cart"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Purchases</span>
+                <span class="info-box-number">{{ customer_purchases.sum }}
+                    <small> L.E</small></span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        </a>
+        <!-- /.info-box -->
+    </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'Core/base.html' %}
+{% block body %}
+    {% for x in clinics %}
+        <a href="{% url 'Queues:today_calendar_for_clinic' x.id %}" class="btn btn-flat btn-info col-md-6 center-item">
+            {{ x }}
+        </a>
+        <br>
+        <br>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'Core/base.html' %}
+{% block body %}
+    <div class="well">
+    <a href="{% url 'Core:new_employee' %}" class="btn btn-success">
+        <i class="fa fa-plus-circle"></i> New Employee
+    </a>
+        <table class="table table-responsive table-hover">
+            <thead>
+            <td>Username</td>
+            <td>Name</td>
+            <td></td>
+            </thead>
+            <tbody>
+            {% for x in employees %}
+                <tr>
+                    <td>{{ x.username }}</td>
+                    <td>{{ x.get_full_name }}</td>
+                    <td>
+                        <div class="btn-group-sm">
+                            <a href="{% url 'Core:edit_employee' x.id %}" class="btn-sm btn-info" title="Edit">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a href="{% url 'Queues:employee_auth' x.id %}" class="btn-sm btn-warning" title="Clinic Permissions">
+                                <i class="fa fa-hand-paper-o"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

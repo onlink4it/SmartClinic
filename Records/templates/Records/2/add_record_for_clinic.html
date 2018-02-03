@@ -1,0 +1,116 @@
+{% extends 'Core/base.html' %}
+{% block head %}
+    {{ form.media }}
+{% endblock %}
+{% block body %}
+    <div class="modal" id="New_Medicine">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form class="form-horizontal new_clinic_form" method="post"
+                      action="#" id="new_clinic_form">
+                    <div class="modal-header">New Medicine</div>
+                    <div class="modal-body">
+                        {% csrf_token %}
+                        {{ form2 }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#New_Medicine">Add</button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#New_Medicine">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <h4 class="center-text">
+        <i class="fa fa-hospital-o"></i>
+        Add Record - Patient: {{ patient.name }}
+    </h4>
+    <a href="{% url 'Records:view_patient_for_clinic' clinic_id patient.id %}" class="btn btn-primary">
+        <i class="fa fa-undo"></i>
+        Back To Patient
+    </a>
+    <form class="form-horizontal" method="post" action="#">
+        {% csrf_token %}
+        <div class="well col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <label>
+                    Age
+                </label>
+                {{ form.age }}
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <label>
+                    Weight
+                </label>
+                {{ form.weight }}
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <label>
+                    H.C
+                </label>
+                {{ form.h_c }}
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <label>
+                    Lt.
+                </label>
+                {{ form.l_t }}
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label>
+                    Problem
+                </label>
+                {{ form.problem }}
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <span class="label-danger">{{ form.prescription.errors }}</span>
+                <label>
+                    Prescription
+                    <a data-toggle="modal" data-target="#New_Medicine">
+                        <i class="fa fa-plus"></i> New Medicine
+                    </a>
+                </label>
+
+                <div id="prescription">
+                    {{ form.prescription }}
+                </div>
+            </div>
+        <button class="btn btn-success col-md-12" type="submit">
+            <i class="fa fa-save"></i>
+        </button>
+        </div>
+    </form>
+{% endblock %}
+{% block js %}
+    <script>
+        $(function () {
+            $('form#new_clinic_form').on('submit', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'Records:new_medicine' %}",
+                    data: $('form.new_clinic_form').serialize(),
+                    success: function (response) {
+                        $('#New_Medicine').modal('hide');
+                        get_medicine();
+                    },
+                    error: function () {
+                        alert('Error');
+                    }
+                });
+                return false;
+            });
+        });
+
+        function get_medicine() {
+            var medicines = $.ajax({
+                type: "GET",
+                url: "{% url 'Records:get_medicine_api' %}",
+                async: false,
+                success: function () {
+                }
+            }).responseText;
+            $('#prescription').html(medicines);
+        }
+    </script>
+{% endblock %}

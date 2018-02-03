@@ -1,0 +1,49 @@
+{% extends 'Core/base.html' %}
+{% block body %}
+    <div class="btn-group-justified">
+        <a href="{% url 'Message:reply' message.id %}" class="btn btn-info" title="رد"><i class="fa fa-reply"></i></a>
+        <a href="{% url 'Message:inbox' %}" class="btn btn-info" title="العودة لصندوق الرسائل"><i class="fa fa-envelope"></i></a>
+        <a href="{% url 'Message:forward' message.id %}" class="btn btn-info" title="اعادة ارسال إلي"><i class="fa fa-share"></i></a>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <table class="table table-responsive">
+                <tr>
+                    <td>
+                        الراسل
+                    </td>
+                    <td>
+                        {{ message.sender.get_full_name }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        عنوان الرسالة
+                    </td>
+                    <td>
+                        {{ message.title }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel-body">
+            <h4>
+                <i class="fa fa-envelope"></i>
+                نص الرسالة
+            </h4>
+            {{ message.body | safe }}
+        </div>
+        {% if message.attachments_set.all %}
+            <div class="panel-footer">
+                <h4>
+                    <i class="fa fa-paperclip"></i>
+                    المرفقات
+                </h4>
+                {% for x in message.attachments_set.all %}
+                    <a href="{{ x.attachment.url }}" target="_blank">{{ x.attachment }}</a><br>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for x in queues %}
+    <li>
+        <a href="{% url 'Records:view_patient' x.calendar.patient.id %}">
+            <!-- Task title and progress text -->
+            <h3>
+                {{ x.calendar.patient }}
+                <small class="pull-right">{{ x.calendar.get_type }}</small>
+                <br>
+                <small class="pull-right">{{ x.calendar.clinic }}</small>
+            </h3>
+            <!-- The progress bar -->
+        </a>
+    </li>
+{% endfor %}
+</body>
+</html>

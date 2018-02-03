@@ -1,0 +1,75 @@
+{% extends 'SuperAdmin/base.html' %}
+{% block body %}
+    <a href="{% url 'SuperAdmin:register_doctor' %}" class="btn btn-flat btn-primary">
+        <i class="fa fa-plus-circle"></i> New Doctor
+    </a>
+    <div class="box box-primary">
+        <div class="box-body table-responsive">
+            <table class="table table-hover table-responsive">
+                <thead>
+                <td>#</td>
+                <td>Username</td>
+                <td>Name</td>
+                <td>Mobile</td>
+                <td>Speciality</td>
+                <td>Created On</td>
+                <td>Expiration</td>
+                <td>Reseller</td>
+                </thead>
+                <tbody>
+                {% for x in doctors %}
+                    <tr class="{% if x.get_days_left <= 15 and x.get_days_left >= 0 %}bg-warning{% elif x.get_days_left < 0 %}bg-danger{% endif %}">
+                        <td>{{ x.id }}</td>
+                        <td>{{ x.name }}</td>
+                        <td>{{ x.admin.get_full_name }}</td>
+                        <td>{{ x.mobile }}</td>
+                        <td>{{ x.get_specialty_display }}</td>
+                        <td>{{ x.created_on.isoformat }}</td>
+                        <td>{{ x.reseller }}</td>
+                        <td><label
+                                class="label {% if x.get_days_left <= 15 and x.get_days_left >= 0 %}label-warning{% elif x.get_days_left < 0 %}label-danger{% else %}label-success{% endif %}">{{ x.expiration.isoformat }}</label>
+                        </td>
+                        <td>
+                            <a href="{% url 'SuperAdmin:view_doctor' x.id %}" class="btn btn-sm btn-flat btn-info">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                            <a href="{% url 'Core:login_as' x.admin.id %}" class="btn btn-sm btn-flat btn-danger">
+                                <i class="fa fa-sign-in"></i>
+                            </a>
+                            <a href="{% url 'SuperAdmin:edit_doctor' x.id %}" class="btn btn-sm btn-flat btn-success">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a href="{% url 'SuperAdmin:change_user_password' x.admin.id %}"
+                               class="btn btn-sm btn-flat btn-warning">
+                                <i class="fa fa-asterisk"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            {% if doctors.has_other_pages %}
+                <ul class="pagination center-item">
+                    {% if doctors.has_previous %}
+                        <li><a href="?page={{ doctors.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in doctors.paginator.page_range %}
+                        {% if doctors.number == i %}
+                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if doctors.has_next %}
+                        <li><a href="?page={{ doctors.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

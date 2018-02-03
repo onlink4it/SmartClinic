@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for x in messages %}
+    <li><!-- start message -->
+        <a href="{% url 'Message:read_message' x.id %}" {% if not x.read %}class="bg-purple"{% endif %}>
+            <div class="pull-left">
+                <!-- User Image -->
+                {% load  staticfiles %}
+                <img src="{% static 'dist/img/pp.png' %}" class="img-circle"
+                     alt="User Image">
+            </div>
+            <!-- Message title and timestamp -->
+            <h4>
+                {% if x.sender.get_full_name %}
+                    {{ x.sender.get_full_name }}
+                {% else %}
+                    {{ x.sender.username }}
+                {% endif %}
+                <small><i class="fa fa-clock-o"></i>{{ x.since }}</small>
+            </h4>
+            <!-- The message -->
+            <p>{{ x.title }}</p>
+        </a>
+    </li>
+    <!-- end message -->
+{% endfor %}
+</body>
+</html>

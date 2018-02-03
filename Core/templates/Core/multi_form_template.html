@@ -1,0 +1,9 @@
+{% for form in forms %}
+    {% for x in form %}
+        <div class="form-group has-feedback">
+            <label>{{ x.label }}</label>
+            <span class="text-danger small">{{ x.errors }}</span>
+            {{ x }}
+        </div>
+    {% endfor %}
+{% endfor %}

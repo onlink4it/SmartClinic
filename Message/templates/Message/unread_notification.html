@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% load staticfiles %}
+{{ text }}
+{% if new %}
+    <embed src="{% static 'sounds/alert.wav' %}" autoplay="1" width="0" height="0" id="sound1"
+           enablejavascript="false">
+{% endif %}
+
+<script>
+
+    {% if new %}
+        PlaySound();
+        function PlaySound() {
+            var sound = document.getElementById('sound1');
+            sound.Play();
+        }
+    {% endif %}
+</script>
+
+</body>
+</html>

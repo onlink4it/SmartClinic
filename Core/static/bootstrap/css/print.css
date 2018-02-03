@@ -1,0 +1,139 @@
+
+@font-face {
+    font-family: arabic;
+    src: url('../fonts/hacen_tunisia.ttf');
+}
+@font-face {
+    font-family: doctor;
+    src: url('../fonts/CAROBTN_.TTF');
+}
+
+@media print {
+    .table td {
+        background-color: transparent !important;
+    }
+
+    .table th {
+        background-color: transparent !important;
+    }
+
+    .bg-lightgray {
+        background-color: lightgray !important;
+    }
+}
+
+.bg-lightgray {
+    background-color: lightgray !important;
+}
+
+body {
+    direction: ltr;
+    margin: 0px;
+    width: 21cm;
+    height: 29.4cm;
+}
+
+.info{
+    font-family: arabic;
+    text-align: right;
+}
+.medicine{
+    font-family: doctor;
+    font-size: 20px;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.center-item {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.page-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);;
+}
+
+/* ******************** */
+/* Change Navbar To RTL */
+.navbar .nav {
+    display: block;
+    float: right;
+    left: 0;
+    margin: 0 10px 0 0;
+    position: relative;
+}
+
+.navbar .brand {
+    color: #777777;
+    display: block;
+    float: right;
+    font-size: 20px;
+    font-weight: 200;
+    margin-left: -20px;
+    padding: 10px 20px;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+.navbar .nav > li {
+    float: right;
+}
+
+.nav-rtl {
+    padding-left: 40px;
+    padding-right: 0px;
+
+}
+
+.nav-rtl li {
+    float: right;
+}
+
+thead {
+    background-color: lightgray;
+    display: table-header-group
+}
+
+table {
+    page-break-inside: auto;
+    width: 100%;
+}
+
+th {
+    text-align: center;
+}
+
+tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+}
+
+tfoot {
+    display: table-footer-group;
+}
+
+.header {
+    top: 10px;
+    width: 100%;
+}
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0px;
+    left: 0;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
+}
+
+.title {
+    background-color: lightgray;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+}
