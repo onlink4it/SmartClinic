@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from .forms import *
 from datetime import datetime, date
-from Core.views import *
+from Core.models import Instance
 
 
 # Create your views here.
@@ -27,7 +27,10 @@ def sender(sender, receiver, title, message):
 def send_message(request):
     form1 = SendMessageForm(request.POST or None, request.FILES or None)
     form2 = MessageAttachmentsForm(request.POST or None, request.FILES or None)
-    instance = get_instance(request)
+    try:
+        instance = Instance.objects.get(admin=request.user)
+    except:
+        instance = Instance.objects.get(users__username__exact=request.user)
     employees = instance.users.all()
     master = instance.admin
     forms = {'': form1, 'Attachments': form2}
@@ -170,7 +173,11 @@ def forward(request, message_id):
     form1.fields[
         'body'].initial = '<br><br><hr>' + '<p><strong>From: </strong>' + msg.sender.get_full_name() + '</p><p><strong>To:</strong>' + msg.receiver.get_full_name() + '</p><p><strong>Date:</strong>' + str(
         msg.date) + '</p>' + msg.body
-    employees = User.objects.filter(is_staff=True)
+    try:
+        instance = Instance.objects.get(admin=request.user)
+    except:
+        instance = Instance.objects.get(users__username__exact=request.user)
+    employees = instance.users.all()
     forms = {'Message': form1, 'Attachments': form2}
     if request.POST.getlist('receiver', 0):
         msg_list = request.POST.getlist('receiver', '')
