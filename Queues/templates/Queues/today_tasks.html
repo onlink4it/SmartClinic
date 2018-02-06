@@ -1,17 +1,17 @@
 {% extends 'Core/base.html' %}
 {% block body %}
     <h4 class="center-text">{{ clinic }}</h4>
-    <a href="{% url 'Queues:assign_date_for_clinic' clinic.id %}" class="btn btn-primary">
+    <a href="{% url 'Queues:assign_date_for_clinic' clinic.id %}" class="btn btn-flat btn-primary col-lg-3 col-md-3 col-sm-6 col-xs-6">
         <i class="fa fa-plus-circle"></i> كشف جديد
     </a>
-    <a href="{% url 'Records:add_patient_for_clinic' clinic.id %}" class="btn btn-primary">
+    <a href="{% url 'Records:add_patient_for_clinic' clinic.id %}" class="btn btn-flat btn-info col-lg-3 col-md-3 col-sm-6 col-xs-6">
         <i class="fa fa-user-plus"></i> مريض جديد
     </a>
-    <a href="{% url 'Accounts:add_expense_for_clinic' clinic.id %}" class="btn btn-danger">
+    <a href="{% url 'Accounts:add_expense_for_clinic' clinic.id %}" class="btn btn-flat btn-danger col-lg-3 col-md-3 col-sm-6 col-xs-6">
         <i class="fa fa-minus-circle"></i> مصروفات
     </a>
-    <a href="{% url 'Accounts:add_income_for_clinic' clinic.id %}" class="btn btn-success">
-    <i class="fa fa-plus-circle"></i> دخل عام
+    <a href="{% url 'Accounts:add_income_for_clinic' clinic.id %}" class="btn btn-flat btn-success col-lg-3 col-md-3 col-sm-6 col-xs-6">
+        <i class="fa fa-plus-circle"></i> دخل عام
     </a>
     <br>
     <div class="panel col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -34,6 +34,9 @@
                     Clinic
                 </td>
                 <td>
+                    Attend
+                </td>
+                <td>
                     Action
                 </td>
                 </thead>
@@ -53,8 +56,20 @@
                             {{ x.clinic }}
                         </td>
                         <td>
-                            <a href="{% url 'Queues:add_to_queue_for_clinic' clinic.id x.id %}" class="btn-sm btn-success"><i
-                                    class="fa fa-arrow-right"></i> </a>
+                            {% if x.attend %}<i class="fa fa-check"></i>{% else %}
+                                <i class="fa fa-remove"></i>{% endif %}
+                        </td>
+                        <td>
+                            {% if not x.attend %}
+                                <a href="{% url 'Queues:add_to_queue_for_clinic' clinic.id x.id %}"
+                                   class="btn btn-sm btn-flat btn-success"><i
+                                        class="fa fa-arrow-right"></i>
+                                </a>
+                                <a href="{% url 'Queues:edit_calendar' x.id %}" class="btn btn-sm btn-flat btn-info"
+                                   alt="تغيير موعد">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
@@ -79,20 +94,25 @@
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>
-                            <a href="{% url 'Records:view_patient_for_clinic' clinic.id x.calendar.patient.id %}">{{ x.calendar.patient.name }}</a>
+                            <a href="{% url 'Records:view_patient_for_clinic' clinic.id x.calendar.patient.id %}">
+                                {{ x.calendar.patient.name }}
+                            </a>
                         </td>
                         <td>{{ x.calendar.get_type }}</td>
                         <td>
-                            <a href="{% url 'Queues:remove_from_queue_for_clinic' clinic.id x.id %}" class="btn-sm btn-success">
+                            <a href="{% url 'Queues:remove_from_queue_for_clinic' clinic.id x.id %}"
+                               class="btn btn-flat btn-sm btn-success">
                                 <i class="fa fa-check"></i>
                             </a>
                             {% if x.calendar.task_type == 1 %}
-                                <a href="{% url 'Queues:assign_consultant_for_clinic' clinic.id x.id %}" class="btn-sm btn-warning"
+                                <a href="{% url 'Queues:assign_consultant_for_clinic' clinic.id x.id %}"
+                                   class="btn btn-flat btn-sm btn-warning"
                                    title="تحديد ميعاد الإعادة">
                                     <i class="fa fa-calendar"></i>
                                 </a>
                             {% else %}
-                                <a href="{% url 'Queues:assign_examination_for_clinic' clinic.id x.id %}" class="btn-sm btn-warning"
+                                <a href="{% url 'Queues:assign_examination_for_clinic' clinic.id x.id %}"
+                                   class="btn btn-flat btn-sm btn-warning"
                                    title="تحديد ميعاد كشف جديد">
                                     <i class="fa fa-calendar"></i>
                                 </a>

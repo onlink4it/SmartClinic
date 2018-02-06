@@ -26,6 +26,9 @@
                     Clinic
                 </td>
                 <td>
+                    Attend
+                </td>
+                <td>
                     Action
                 </td>
                 </thead>
@@ -43,6 +46,17 @@
                         </td>
                         <td>
                             {{ x.clinic }}
+                        </td>
+                        <td>
+                            {% if x.attend %}<i class="fa fa-check"></i>{% else %}
+                                <i class="fa fa-remove"></i>{% endif %}
+                        </td>
+                        <td>
+                            {% if not x.attend %}
+                                <a href="{% url 'Queues:edit_calendar' x.id %}" class="btn btn-sm btn-flat btn-info">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

@@ -4,6 +4,7 @@ from .views import *
 app_name = 'Queues'
 urlpatterns = [
     url(r'^Calendar/Search/$', my_calendar, name='my_calendar'),
+    url(r'^Calendar/Edit/(?P<calendar_id>[0-9]+)/$', edit_calendar, name='edit_calendar'),
     url(r'^API/TodayTasks/$', today_tasks_api, name='get_today_tasks'),
     url(r'^API/Queue/$', queues_api, name='get_queue'),
     url(r'^API/TodayTasks/Count/$', get_tasks_count, name='get_tasks_count'),

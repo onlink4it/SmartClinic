@@ -70,3 +70,14 @@ class ClinicAuthForm(forms.ModelForm):
         widgets = {
             'allowed_clinic': forms.SelectMultiple(attrs={'class': 'form-control select2'})
         }
+
+
+class EditCalendarDate(forms.ModelForm):
+    class Meta:
+        model = Calendar
+        fields = [
+            'date'
+        ]
+        widgets = {
+            'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'})
+        }

@@ -57,3 +57,6 @@ class Queue(models.Model):
 
     def __str__(self):
         return self.calendar.patient.name
+
+    class Meta:
+        ordering = ['-id']

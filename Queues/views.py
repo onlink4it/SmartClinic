@@ -233,6 +233,7 @@ def add_to_queue_for_clinic(request, clinic_id, calendar_id):
             queue.calendar = calendar
             calendar.attend = True
             queue.save()
+            calendar.save()
             add_transaction(clinic=calendar.clinic, by=request.user, income=queue.paid, comment=str(calendar.get_type()) + ' - ' + str(calendar.patient.name))
             return redirect('Queues:today_calendar_for_clinic', clinic.id)
     else:
@@ -278,12 +279,31 @@ def my_calendar_for_clinic(request, clinic_id):
 
 
 @login_required(login_url='Core:login_user')
+def edit_calendar(request, calendar_id):
+    calendar = get_object_or_404(Calendar, id=calendar_id)
+    title = "تغيير موعد: " + calendar.patient.name + ' بدلاً من: ' + str(calendar.date.isoformat())
+    form = EditCalendarDate(request.POST or None, instance=calendar)
+    if form.is_valid():
+        form.save()
+        return redirect('Queues:queue_home')
+    context = {
+        'calendar': calendar,
+        'form': form,
+        'title': title,
+    }
+    return render(request, 'Core/form.html', context)
+
+
+@login_required(login_url='Core:login_user')
 def queue_home(request):
     user = request.user
     if user.is_superuser:
         clinics = Clinic.objects.filter(admin=user)
     else:
         clinics = Clinic.objects.filter(employeeauth__employee=request.user)
+    if clinics.count() == 1:
+        clinic = clinics[0]
+        return redirect('Queues:today_calendar_for_clinic', clinic.id)
     context = {'clinics': clinics}
     return render(request, 'Queues/queue_home.html', context)
 
