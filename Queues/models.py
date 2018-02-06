@@ -46,6 +46,9 @@ class Calendar(models.Model):
         elif self.task_type == 2:
             return 'إعادة كشف'
 
+    class Meta:
+        ordering = ['id']
+
 
 class Queue(models.Model):
     date = models.DateField(auto_now_add=True, null=True)
@@ -59,4 +62,4 @@ class Queue(models.Model):
         return self.calendar.patient.name
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['id']
