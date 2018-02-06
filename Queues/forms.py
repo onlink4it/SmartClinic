@@ -1,6 +1,15 @@
 from django import forms
 from .models import *
 from datetime import date
+from django_select2.forms import ModelSelect2Widget, Select2Widget
+
+
+class PatientWidget(ModelSelect2Widget):
+    model = Patient
+    search_fields = [
+        'name__icontains',
+        'phone__icontains',
+    ]
 
 
 class AssignDateForm(forms.ModelForm):
@@ -12,7 +21,7 @@ class AssignDateForm(forms.ModelForm):
         ]
         widgets = {
             'task_type': forms.RadioSelect(),
-            'patient': forms.Select(attrs={'class': 'form-control select2'}),
+            'patient': PatientWidget(attrs={'class': 'form-control select2'}),
             'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'value': date.today})
         }
 

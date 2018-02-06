@@ -79,7 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Smart_Clinic.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -143,7 +142,27 @@ TINYMCE_DEFAULT_CONFIG = {
 TINYMCE_SPELLCHECKER = False
 
 
-SELECT2_JS = 'static/plugins/select2/select2.full.js'
-SELECT2_CSS = 'static/plugins/select2/select2.css'
-SELECT2_I18N_PATH = 'static/plugins/select2/i18n'
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
+    'select2': {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
+}
+
+# Set the cache backend to select2
+SELECT2_CACHE_BACKEND = 'select2'
+CACHE_PREFIX = 'select2_'
+SELECT2_JS = 'plugins/select2/select2.full.js'
+SELECT2_CSS = 'plugins/select2/select2.css'
+SELECT2_I18N_PATH = 'plugins/select2/i18n'
 I18N_AVAILABLE_LANGUAGES = ['ar', 'en']

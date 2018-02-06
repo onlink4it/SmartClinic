@@ -1,6 +1,6 @@
 {% extends 'Core/base.html' %}
 {% block head %}
-    {{ form.media }}
+    {{ form.media.css }}
 {% endblock %}
 {% block body %}
     <div class="modal" id="New_Medicine">
@@ -112,4 +112,6 @@
             $('#prescription').html(medicines);
         }
     </script>
+
+    {{ form.media.js }}
 {% endblock %}

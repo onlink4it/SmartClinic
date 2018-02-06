@@ -319,7 +319,7 @@
                                     {{ x.weight }}
                                 </td>
                                 <td>
-                                    {{ x.problem }}
+                                    {{ x.problem|safe }}
                                 </td>
                                 <td>
                                     {{ x.h_c }}
@@ -328,12 +328,12 @@
                                     {{ x.l_t }}
                                 </td>
                                 <td>
-                                    {% for y in x.prescriptions.all %}
+                                    {% for y in x.prescription.all %}
                                         {{ y }}<br>
                                     {% endfor %}
                                 </td>
                                 <td>
-                                    <a href="" class="btn-sm btn-info" title="طباعة">
+                                    <a href="{% url 'Records:print_prescription' x.id %}" class="btn-sm btn-info" title="طباعة" target="_blank">
                                         <i class="fa fa-print"></i>
                                     </a>
                                 </td>

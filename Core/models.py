@@ -48,6 +48,7 @@ class Instance(models.Model):
     created_on = models.DateField(auto_now_add=True, null=True)
     is_reseller = models.BooleanField(default=False)
     is_superadmin = models.BooleanField(default=False)
+    max_results_per_page = models.IntegerField(default=100)
 
     def __str__(self):
         return self.name

@@ -1,6 +1,14 @@
 from .models import *
 from django import forms
 from tinymce.widgets import TinyMCE
+from django_select2.forms import ModelSelect2MultipleWidget
+
+
+class MedicineWidget(ModelSelect2MultipleWidget):
+    model = Medicine
+    search_fields = [
+        'name__icontains',
+    ]
 
 
 class AddPatientForm(forms.ModelForm):
@@ -96,7 +104,7 @@ class AddPatientRecordForm(forms.ModelForm):
             'week': forms.NumberInput(attrs={'class': 'form-control'}),
             'h_b_percent': forms.NumberInput(attrs={'class': 'form-control'}),
             'comments_complain': TinyMCE(attrs={'class': 'form-control'}),
-            'prescription': forms.SelectMultiple(attrs={'class': 'form-control select2', 'multiple': 'multiple'}),
+            'prescription': MedicineWidget(attrs={'class': 'form-control select2', 'multiple': 'multiple'}),
 
 
             'problem': TinyMCE(attrs={'class': 'form-control'}),

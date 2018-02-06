@@ -420,7 +420,7 @@ def search2(request):
         results = Patient.objects.filter(Q(phone__contains=q) | Q(name__contains=q), instance=instance)
         search = True
     page = request.GET.get('page', 1)
-    paginator = Paginator(results, 100)
+    paginator = Paginator(results, instance.max_results_per_page)
     try:
         results = paginator.page(page)
     except PageNotAnInteger:

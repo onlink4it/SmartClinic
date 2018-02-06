@@ -231,6 +231,7 @@ def add_to_queue_for_clinic(request, clinic_id, calendar_id):
         if form.is_valid():
             queue = form.save(commit=False)
             queue.calendar = calendar
+            calendar.attend = True
             queue.save()
             add_transaction(clinic=calendar.clinic, by=request.user, income=queue.paid, comment=str(calendar.get_type()) + ' - ' + str(calendar.patient.name))
             return redirect('Queues:today_calendar_for_clinic', clinic.id)

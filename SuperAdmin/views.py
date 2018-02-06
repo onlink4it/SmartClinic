@@ -36,9 +36,10 @@ def index(request):
 
 @login_required(login_url='Core:login_user')
 def list_doctors(request):
+    instance = get_instance(request)
     doctors = Instance.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(doctors, 5)
+    paginator = Paginator(doctors, instance.max_results_per_page)
     try:
         doctors = paginator.page(page)
     except PageNotAnInteger:
@@ -139,7 +140,18 @@ def change_user_password(request, user_id):
 
 @login_required(login_url='Core:login_user')
 def list_resellers(request):
+    instance = get_instance(request)
     resellers = Reseller.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(resellers, instance.max_results_per_page)
+    try:
+        resellers = paginator.page(page)
+    except PageNotAnInteger:
+        resellers = paginator.page(1)
+    except EmptyPage:
+        resellers = paginator.page(paginator.num_pages)
+    except InvalidPage:
+        resellers = paginator.page(1)
     context = {
         'resellers': resellers,
     }
@@ -237,9 +249,10 @@ def unlock_reseller(request, reseller_id):
 
 @login_required(login_url='Core:login_user')
 def list_patients(request):
+    instance = get_instance(request)
     patients = Patient.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(patients, 50)
+    paginator = Paginator(patients, instance.max_results_per_page)
     try:
         patients = paginator.page(page)
     except PageNotAnInteger:

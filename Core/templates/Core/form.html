@@ -1,6 +1,6 @@
 {% extends 'Core/base.html' %}
 {% block head %}
-    {{ form.media }}
+    {{ form.media.css }}
 {% endblock %}
 {% block page_header %}
     {{ title|safe }}
@@ -28,4 +28,7 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block js %}
+    {{ form.media.js }}
 {% endblock %}
