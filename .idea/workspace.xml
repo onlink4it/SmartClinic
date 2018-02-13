@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11a5ef30-1454-4c9a-8d96-d3f757eed355" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Core/templates/Core/base.html" afterPath="$PROJECT_DIR$/Core/templates/Core/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Records/forms.py" afterPath="$PROJECT_DIR$/Records/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Records/models.py" afterPath="$PROJECT_DIR$/Records/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Records/templates/Records/1/view_patient.html" afterPath="$PROJECT_DIR$/Records/templates/Records/1/view_patient.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Records/templates/Records/1/view_patient_for_clinic.html" afterPath="$PROJECT_DIR$/Records/templates/Records/1/view_patient_for_clinic.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Records/templates/Records/2/view_patient.html" afterPath="$PROJECT_DIR$/Records/templates/Records/2/view_patient.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Records/templates/Records/2/view_patient_for_clinic.html" afterPath="$PROJECT_DIR$/Records/templates/Records/2/view_patient_for_clinic.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,7 +15,28 @@
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Records/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="200" column="37" lean-forward="false" selection-start-line="200" selection-start-column="37" selection-end-line="200" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Records/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="62" column="76" lean-forward="false" selection-start-line="62" selection-start-column="76" selection-end-line="62" selection-end-column="76" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -142,7 +155,7 @@
       <scroll-view-position x="0" y="0" />
     </layout>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="27" />
     <option name="width" value="1366" />
     <option name="height" value="741" />
@@ -170,24 +183,6 @@
             <path>
               <item name="Smart_Clinic" type="b2602c69:ProjectViewProjectNode" />
               <item name="Smart_Clinic" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Smart_Clinic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Smart_Clinic" type="462c0819:PsiDirectoryNode" />
-              <item name="Records" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Smart_Clinic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Smart_Clinic" type="462c0819:PsiDirectoryNode" />
-              <item name="Records" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Smart_Clinic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Smart_Clinic" type="462c0819:PsiDirectoryNode" />
-              <item name="Records" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="Records" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Smart_Clinic" type="b2602c69:ProjectViewProjectNode" />
@@ -441,7 +436,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24377745" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -451,7 +446,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280507" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32646593" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32646593" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -825,14 +820,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Records/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="62" column="76" lean-forward="false" selection-start-line="62" selection-start-column="76" selection-end-line="62" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Records/templates/Records/1/view_patient.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -849,9 +836,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Records/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="62" column="76" lean-forward="false" selection-start-line="62" selection-start-column="76" selection-end-line="62" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Records/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
+        <state relative-caret-position="300">
           <caret line="200" column="37" lean-forward="false" selection-start-line="200" selection-start-column="37" selection-end-line="200" selection-end-column="37" />
           <folding />
         </state>
