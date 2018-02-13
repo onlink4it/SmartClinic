@@ -1,0 +1,69 @@
+{% extends 'Core/base.html' %}
+{% block head %}
+    {{ form.media.css }}
+{% endblock %}
+{% block page_header %}
+    {{ title|safe }}
+{% endblock %}
+{% block body %}
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="box box-success">
+            <div class="box-header with-border">
+                <h3 class="box-title">{{ title | safe }}</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                <form class="form-horizontal" method="get" action="{% url 'Queues:patients_json' %}" id="search_form">
+                    <input name="q" class="form-control" id="q">
+                    <select id="dd" name="patient">
+
+                    </select>
+                    <div id="response" class="well">
+                        Ahmed
+                    </div>
+                </form>
+                <form class="form-horizontal" method="post" action="#" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% include 'Core/form_template.html' %}
+                    <button class="btn btn-success btn-block" type="submit" title="حفظ">
+                        <i class="fa fa-save"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    {{ form.media.js }}
+    <script>
+        $(function () {
+            $('#q').on('keyup', function (e) {
+                e.preventDefault();
+                var response = $.ajax({
+                    type: 'get',
+                    url: '{% url 'Queues:patients_json' %}',
+                    data: $('form#search_form').serialize(),
+                    success: function (data) {
+                        document.getElementById("response").innerHTML = JSON.stringify(data, undefined, 2);
+                        var jsonArray = JSON.parse(data);
+                        var select = document.getElementById('dd');
+                        var option;
+                        for (var i = 0; i < jsonArray.length; i++) {
+                            option = document.createElement('option');
+                            option.text = jsonArray[i]["id"];
+                            select.add(option);
+                        }
+                    },
+                    error: function () {
+                        console.log("Signup was unsuccessful");
+                    }
+                });
+            });
+        })
+    </script>
+{% endblock %}

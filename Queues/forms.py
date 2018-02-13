@@ -1,7 +1,8 @@
 from django import forms
 from .models import *
+from Core.views import *
 from datetime import date
-from django_select2.forms import ModelSelect2Widget, Select2Widget
+from django_select2.forms import ModelSelect2Widget, Select2Widget, HeavySelect2Widget
 
 
 class PatientWidget(ModelSelect2Widget):
@@ -21,7 +22,7 @@ class AssignDateForm(forms.ModelForm):
         ]
         widgets = {
             'task_type': forms.RadioSelect(),
-            'patient': PatientWidget(attrs={'class': 'form-control select2'}),
+            'patient': forms.Select(attrs={'class': 'form-control select2'}),
             'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'value': date.today})
         }
 
@@ -80,4 +81,19 @@ class EditCalendarDate(forms.ModelForm):
         ]
         widgets = {
             'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'})
+        }
+
+
+class AssignDate2Form(forms.ModelForm):
+
+    class Meta:
+        model = Calendar
+        fields = [
+            'date',
+            'patient',
+        ]
+        widgets = {
+            'task_type': forms.RadioSelect(),
+            'patient': forms.HiddenInput(),
+            'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'value': date.today})
         }

@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 from datetime import date, datetime
 from .models import *
 from Core.views import *
+from django.http import JsonResponse
+from django.db.models import Q
 from .forms import *
 from Accounts.views import *
 from django.shortcuts import render, get_object_or_404, redirect
@@ -329,3 +331,35 @@ def employee_auth(request, employee_id):
         'form': form,
     }
     return render(request, 'Core/form.html', context)
+
+
+def patients_json(request):
+    instance = get_instance(request)
+    q = request.GET.get('q', None)
+    if q:
+        patients = Patient.objects.filter(Q(name__icontains=q) | Q(phone__icontains=q),instance=instance)
+        patients = patients.values('id', 'name', 'phone')
+        patients = list(patients)
+        return JsonResponse(patients, safe=False)
+
+
+def ass(request, clinic_id):
+    clinic = get_object_or_404(Clinic, id=clinic_id)
+    if clinic.admin == get_instance(request).admin:
+        form = AssignDate2Form(request.POST or None)
+        form.fields['patient'].queryset = Patient.objects.filter(instance=get_instance(request))
+        title = 'Assign Date At: ' + str(date.today())
+        if form.is_valid():
+            entry = form.save(commit=False)
+            entry.date = date.today()
+            entry.task_type = 1
+            entry.clinic = clinic
+            entry.save()
+            return redirect('Queues:today_calendar_for_clinic', clinic.id)
+    else:
+        return render(request, 'Core/permission_error.html')
+    context = {
+        'form': form,
+        'title': title
+    }
+    return render(request, 'Queues/ass.html', context)
