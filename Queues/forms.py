@@ -22,7 +22,7 @@ class AssignDateForm(forms.ModelForm):
         ]
         widgets = {
             'task_type': forms.RadioSelect(),
-            'patient': forms.Select(attrs={'class': 'form-control select2'}),
+            'patient': forms.Select(attrs={'class': 'form-control select2 patient'}),
             'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'value': date.today})
         }
 

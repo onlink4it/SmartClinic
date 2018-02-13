@@ -48,16 +48,10 @@
                     type: 'get',
                     url: '{% url 'Queues:patients_json' %}',
                     data: $('form#search_form').serialize(),
-                    success: function (data) {
-                        document.getElementById("response").innerHTML = JSON.stringify(data, undefined, 2);
-                        var jsonArray = JSON.parse(data);
-                        var select = document.getElementById('dd');
-                        var option;
-                        for (var i = 0; i < jsonArray.length; i++) {
-                            option = document.createElement('option');
-                            option.text = jsonArray[i]["id"];
-                            select.add(option);
-                        }
+                    success: function (json) {
+                        $.each(json, function (i, optionHtml) {
+                            $('.dd').append(optionHtml);
+                        });
                     },
                     error: function () {
                         console.log("Signup was unsuccessful");
