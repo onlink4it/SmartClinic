@@ -310,7 +310,7 @@
                         {% for x in patient.patientrecord_set.all %}
                             <tr>
                                 <td>
-                                    {{ x.date }}
+                                    {{ x.date.isoformat }}
                                 </td>
                                 <td>
                                     {{ x.age }}
