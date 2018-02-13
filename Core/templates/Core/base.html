@@ -339,6 +339,8 @@ desired effect
                                     <li><a href="{% url 'Records:list_medicine' %}"><i
                                             class='fa fa-medkit'></i>Medicines</a>
                                     </li>
+                                    <li><a href="{% url 'Queues:list_services' %}"><i
+                                            class='fa fa-list'></i>Services</a></li>
                                     <li><a href="{% url 'Queues:list_clinics' %}"><i class='fa fa-h-square'></i>My
                                         Clinics</a>
                                     </li>
@@ -675,6 +677,7 @@ desired effect
         }).responseText;
         $('#queues_count').html(queues_count);
     }
+
 </script>
 {% block js %}
 

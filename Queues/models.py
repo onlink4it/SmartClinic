@@ -18,6 +18,15 @@ class Clinic(models.Model):
         return self.name
 
 
+class ClinicServices(models.Model):
+    instance = models.ForeignKey(Instance, on_delete=models.SET_NULL, null=True)
+    name = models.CharField(max_length=128)
+    price = models.FloatField(default=0)
+
+    def __str__(self):
+        return self.name
+
+
 class EmployeeAuth(models.Model):
     employee = models.ForeignKey(User, on_delete=models.CASCADE)
     allowed_clinic = models.ManyToManyField(Clinic, blank=True)
@@ -27,24 +36,14 @@ class EmployeeAuth(models.Model):
 
 
 class Calendar(models.Model):
-    task_types = (
-        (1, 'كشف جديد'),
-        (2, 'إعادة كشف'),
-    )
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, verbose_name='Patient')
     date = models.DateTimeField(verbose_name='Date')
-    task_type = models.IntegerField(verbose_name='Type', choices=task_types)
+    task_type = models.ForeignKey(ClinicServices, on_delete=models.SET_NULL, null=True, verbose_name='Service')
     attend = models.BooleanField(verbose_name='Attend', default=False)
     clinic = models.ForeignKey(Clinic, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.patient.name
-
-    def get_type(self):
-        if self.task_type == 1:
-            return 'كشف جديد'
-        elif self.task_type == 2:
-            return 'إعادة كشف'
 
     class Meta:
         ordering = ['id']
@@ -63,3 +62,4 @@ class Queue(models.Model):
 
     class Meta:
         ordering = ['id']
+

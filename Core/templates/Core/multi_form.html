@@ -11,5 +11,13 @@
                 <i class="fa fa-save"></i>
             </button>
         </form>
-        <div class="well">
+    </div>
+{% endblock %}
+{% block js %}
+    {% for form in forms %}
+        {{ form.media.js }}
+    {% endfor %}
+    <script>
+    $(':input:not(.checkbox)').addClass('form-control');
+    </script>
 {% endblock %}

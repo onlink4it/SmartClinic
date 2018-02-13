@@ -96,11 +96,14 @@
                         </td>
                         <td>
                             <div class="btn-group-sm">
-                                <a href="{% url 'Records:view_patient' x.id %}" class="btn-sm btn-info" title="عرض">
+                                <a href="{% url 'Records:view_patient' x.id %}" class="btn btn-sm btn-flat btn-info" title="عرض">
                                     <i class="fa fa-eye"></i>
                                 </a>
+                            <a href="{% url 'Queues:assign_date_for_patient' x.id %}" class="btn btn-sm btn-flat btn-warning" title="حجز موعد">
+                                <i class="fa fa-calendar"></i>
+                            </a>
                                 {% if request.user.is_superuser %}
-                                    <a class="btn-sm btn-danger" data-toggle="modal" data-target="#{{ x.id }}"
+                                    <a class="btn btn-sm btn-flat btn-danger" data-toggle="modal" data-target="#{{ x.id }}"
                                        title="حذف">
                                         <i class="fa fa-remove"></i>
                                     </a>
