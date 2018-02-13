@@ -60,7 +60,7 @@ class AddPatientForm(forms.ModelForm):
             'xx': forms.CheckboxInput(attrs={'class': 'flat-red'}),
             'xy': forms.CheckboxInput(attrs={'class': 'flat-red'}),
             'still_birth': forms.CheckboxInput(attrs={'class': 'flat-red'}),
-            'co': forms.SelectMultiple(attrs={'class': 'select2 form-control'}),
+            'co': forms.SelectMultiple(attrs={'class': 'form-control select2'}),
             'l_n_m_b': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'e_d_d': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'readonly': 'readonly'}),
 

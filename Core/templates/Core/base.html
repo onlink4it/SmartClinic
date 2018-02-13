@@ -339,6 +339,8 @@ desired effect
                                     <li><a href="{% url 'Records:list_medicine' %}"><i
                                             class='fa fa-medkit'></i>Medicines</a>
                                     </li>
+                                    <li><a href="{% url 'Queues:list_services' %}"><i
+                                            class='fa fa-list'></i>Services</a></li>
                                     <li><a href="{% url 'Queues:list_clinics' %}"><i class='fa fa-h-square'></i>My
                                         Clinics</a>
                                     </li>
@@ -430,7 +432,7 @@ desired effect
     <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-            Ver. 1.0.0
+            Ver. 2.0.1
         </div>
         <!-- Default to the left -->
         <strong>Copyright &copy; 2018 <a href="#">ON-Link</a>.</strong> All rights reserved.
@@ -675,6 +677,7 @@ desired effect
         }).responseText;
         $('#queues_count').html(queues_count);
     }
+
 </script>
 {% block js %}
 

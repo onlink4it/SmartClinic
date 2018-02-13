@@ -137,7 +137,6 @@ def assign_date_for_clinic(request, clinic_id):
         if form.is_valid():
             entry = form.save(commit=False)
             entry.date = date.today()
-            entry.task_type = 1
             entry.clinic = clinic
             entry.save()
             return redirect('Queues:today_calendar_for_clinic', clinic.id)
@@ -174,12 +173,11 @@ def assign_examination_for_clinic(request, clinic_id, patient_id):
     clinic = get_object_or_404(Clinic, id=clinic_id,)
     patient = get_object_or_404(Queue, id=patient_id)
     if clinic.admin == get_instance(request).admin and patient.calendar.patient.instance == get_instance(request):
-        title = 'Assign Examination For: ' + patient.calendar.patient.name
+        title = 'Assign Date For: ' + patient.calendar.patient.name
         form = AssignConsultantForm(request.POST or None)
         if form.is_valid():
             entry = form.save(commit=False)
             entry.patient = patient.calendar.patient
-            entry.task_type = 1
             entry.clinic = clinic
             entry.save()
             return remove_from_queue_for_clinic(request, clinic_id, patient_id)
@@ -194,25 +192,26 @@ def assign_examination_for_clinic(request, clinic_id, patient_id):
 
 
 @login_required(login_url='Core:login_user')
-def assign_consultant_for_clinic(request, clinic_id, patient_id):
-    clinic = get_object_or_404(Clinic, id=clinic_id)
-    patient = get_object_or_404(Queue, id=patient_id)
-    if clinic.admin == get_instance(request).admin and patient.calendar.patient.instance == get_instance(request):
-        title = 'Assign Consultation For: ' + patient.calendar.patient.name
-        form = AssignConsultantForm(request.POST or None)
+def assign_date_for_patient(request, patient_id):
+    patient = get_object_or_404(Patient, id=patient_id,)
+    if patient.instance == get_instance(request):
+        title = 'Assign Date For: ' + patient.name
+        form = AssignDateForPatientForm(request.POST or None)
+        if request.user.is_superuser:
+            form.fields['clinic'].queryset = Clinic.objects.filter(admin=request.user)
+        else:
+            form.fields['clinic'].queryset = Clinic.objects.filter(employeeauth__employee=request.user)
         if form.is_valid():
             entry = form.save(commit=False)
-            entry.patient = patient.calendar.patient
-            entry.task_type = 2
-            entry.clinic = clinic
+            entry.patient = patient
             entry.save()
-            return remove_from_queue_for_clinic(request, clinic_id, patient_id)
+            return redirect('Core:index')
     else:
         return render(request, 'Core/permission_error.html')
     context = {
         'patient': patient,
         'form': form,
-        'title': title
+        'title': title,
     }
     return render(request, 'Core/form.html', context)
 
@@ -221,22 +220,19 @@ def assign_consultant_for_clinic(request, clinic_id, patient_id):
 def add_to_queue_for_clinic(request, clinic_id, calendar_id):
     clinic = get_object_or_404(Clinic, id=clinic_id)
     calendar = get_object_or_404(Calendar, id=calendar_id)
-
     if clinic.admin == get_instance(request).admin and calendar.patient.instance == get_instance(request):
         title = "تحديد دور  " + str(calendar.patient.name) + " - "
-        if calendar.task_type == 1:
-            title += "كشف جديد"
-            form = QueueForm(request.POST or None, initial={'paid': clinic.examination_fees})
-        elif calendar.task_type == 2:
-            title += "إعادة كشف"
-            form = QueueForm(request.POST or None, initial={'paid': clinic.consultant_fees})
+        form = QueueForm(request.POST or None, initial={'paid': calendar.task_type.price})
+        if not request.user.is_superuser:
+            form = QueueForm(request.POST or None, initial={'paid': calendar.task_type.price})
+            form.fields['paid'].widget.attrs['readonly'] = True
         if form.is_valid():
             queue = form.save(commit=False)
             queue.calendar = calendar
             calendar.attend = True
             queue.save()
             calendar.save()
-            add_transaction(clinic=calendar.clinic, by=request.user, income=queue.paid, comment=str(calendar.get_type()) + ' - ' + str(calendar.patient.name))
+            add_transaction(clinic=calendar.clinic, by=request.user, income=queue.paid, comment=str(calendar.task_type.name) + ' - ' + str(calendar.patient.name))
             return redirect('Queues:today_calendar_for_clinic', clinic.id)
     else:
         return render(request, 'Core/permission_error.html')
@@ -363,3 +359,48 @@ def ass(request, clinic_id):
         'title': title
     }
     return render(request, 'Queues/ass.html', context)
+
+
+def list_services(request):
+    services = ClinicServices.objects.filter(instance=get_instance(request))
+    context = {
+        'services': services,
+    }
+    return render(request, 'Queues/list_services.html', context)
+
+
+def new_service(request):
+    title = 'إضافة خدمة جديدة'
+    form = ClinicServiceForm(request.POST or None)
+    if form.is_valid():
+        service = form.save(commit=False)
+        service.instance = get_instance(request)
+        service.save()
+        return redirect('Queues:list_services')
+    context = {
+        'form': form,
+        'title': title,
+    }
+    return render(request, 'Core/form.html', context)
+
+
+def edit_service(request, pk):
+    title = 'تعديل خدمة'
+    form = ClinicServiceForm(request.POST or None, instance=get_object_or_404(Clinic, id=pk))
+    if form.is_valid():
+        form.save()
+        return redirect('Queues:list_services')
+    context = {
+        'form': form,
+        'title': title,
+    }
+    return render(request, 'Core/form.html', context)
+
+
+def delete_service(request, pk):
+    service = get_object_or_404(ClinicServices, id=pk)
+    if service.instance == get_instance(request):
+        service.delete()
+        return redirect('Queues:list_services')
+    else:
+        return render(request, 'Core/permission_error.html')

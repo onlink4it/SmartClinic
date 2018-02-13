@@ -439,6 +439,12 @@
                                 Comments, Complains
                             </td>
                             <td>
+                                Lab
+                            </td>
+                            <td>
+                                Radiology
+                            </td>
+                            <td>
                                 Prescription
                             </td>
                             <td>
@@ -450,7 +456,7 @@
                         {% for x in patient.patientrecord_set.all %}
                             <tr>
                                 <td>
-                                    {{ x.date }}
+                                    {{ x.date.isoformat }}
                                 </td>
                                 <td>
                                     {{ x.b_p }}
@@ -478,6 +484,12 @@
                                 </td>
                                 <td>
                                     {{ x.comments_complains | safe }}
+                                </td>
+                                <td>
+                                    {% for y in x.prescription.all %}{{ y }}<br>{% endfor %}
+                                </td>
+                                <td>
+                                    {% for y in x.prescription.all %}{{ y }}<br>{% endfor %}
                                 </td>
                                 <td>
                                     {% for y in x.prescription.all %}{{ y }}<br>{% endfor %}

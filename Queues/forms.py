@@ -18,10 +18,24 @@ class AssignDateForm(forms.ModelForm):
         model = Calendar
         fields = [
             'date',
+            'task_type',
             'patient',
         ]
         widgets = {
-            'task_type': forms.RadioSelect(),
+            'patient': forms.Select(attrs={'class': 'form-control select2 patient'}),
+            'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'value': date.today})
+        }
+
+
+class AssignDateForPatientForm(forms.ModelForm):
+    class Meta:
+        model = Calendar
+        fields = [
+            'date',
+            'task_type',
+            'clinic',
+        ]
+        widgets = {
             'patient': forms.Select(attrs={'class': 'form-control select2 patient'}),
             'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'value': date.today})
         }
@@ -32,9 +46,9 @@ class AssignConsultantForm(forms.ModelForm):
         model = Calendar
         fields = [
             'date',
+            'task_type',
         ]
         widgets = {
-            'task_type': forms.RadioSelect(),
             'patient': forms.Select(attrs={'class': 'form-control'}),
             'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'})
         }
@@ -47,7 +61,7 @@ class QueueForm(forms.ModelForm):
             'paid',
         ]
         widgets = {
-            'paid': forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
+            'paid': forms.NumberInput(attrs={'class': 'form-control'}),
         }
 
 
@@ -85,7 +99,6 @@ class EditCalendarDate(forms.ModelForm):
 
 
 class AssignDate2Form(forms.ModelForm):
-
     class Meta:
         model = Calendar
         fields = [
@@ -97,3 +110,12 @@ class AssignDate2Form(forms.ModelForm):
             'patient': forms.HiddenInput(),
             'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'value': date.today})
         }
+
+
+class ClinicServiceForm(forms.ModelForm):
+    class Meta:
+        model = ClinicServices
+        fields = [
+            'name',
+            'price',
+        ]

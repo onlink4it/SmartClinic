@@ -50,7 +50,7 @@
                             <a href="{% url 'Records:view_patient_for_clinic' clinic.id x.patient.id %}">{{ x.patient.name }}</a>
                         </td>
                         <td>
-                            {{ x.get_type }}
+                            {{ x.task_type }}
                         </td>
                         <td>
                             {{ x.clinic }}
@@ -84,7 +84,7 @@
         <div class="panel-body" style="overflow-x:auto;">
             <table class="table table-responsive">
                 <thead>
-                <td>order</td>
+                <td>#</td>
                 <td>Patient</td>
                 <td>Type</td>
                 <td></td>
@@ -98,7 +98,7 @@
                                 {{ x.calendar.patient.name }}
                             </a>
                         </td>
-                        <td>{{ x.calendar.get_type }}</td>
+                        <td>{{ x.calendar.task_type }}</td>
                         <td>
                             <a href="{% url 'Queues:remove_from_queue_for_clinic' clinic.id x.id %}"
                                class="btn btn-flat btn-sm btn-success">

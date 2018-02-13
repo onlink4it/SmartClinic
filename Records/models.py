@@ -21,6 +21,20 @@ class Complain(models.Model):
         return self.complain
 
 
+class LabTest(models.Model):
+    name = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.name
+
+
+class Radiology(models.Model):
+    name = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.name
+
+
 class Patient(models.Model):
     code = models.CharField(max_length=32, null=True, blank=True)
     instance = models.ForeignKey(Instance, on_delete=models.CASCADE, null=True, blank=True)
@@ -169,3 +183,30 @@ class PatientRecord(models.Model):
     def __str__(self):
         return str(self.date)
 
+
+class PatientLabTest(models.Model):
+    date = models.DateField(auto_now_add=True)
+    patient = models.ForeignKey(PatientRecord, on_delete=models.SET_NULL, null=True)
+    test = models.ForeignKey(LabTest, on_delete=models.SET_NULL, null=True)
+    result = models.TextField(null=True)
+    result_at = models.DateField(null=True)
+    img1 = models.FileField(null=True, blank=True)
+    img2 = models.FileField(null=True, blank=True)
+    img3 = models.FileField(null=True, blank=True)
+
+    def __str__(self):
+        return self.test.name
+
+
+class PatientRadiology(models.Model):
+    date = models.DateField(auto_now_add=True)
+    record = models.ForeignKey(PatientRecord, on_delete=models.SET_NULL, null=True)
+    test = models.ForeignKey(Radiology, on_delete=models.SET_NULL, null=True)
+    result = models.TextField(null=True)
+    result_at = models.DateField(null=True)
+    img1 = models.FileField(null=True, blank=True)
+    img2 = models.FileField(null=True, blank=True)
+    img3 = models.FileField(null=True, blank=True)
+
+    def __str__(self):
+        return self.test.name
