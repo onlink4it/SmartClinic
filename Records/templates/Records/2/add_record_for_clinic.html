@@ -75,6 +75,20 @@
                     {{ form.prescription }}
                 </div>
             </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <span class="label-danger">{{ form.lab_tests_asked.errors }}</span>
+                <label>
+                    Lab Tests Required
+                </label>
+                {{ form.lab_tests_asked }}
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <span class="label-danger">{{ form.radiology_asked.errors }}</span>
+                <label>
+                    Radiology Required
+                </label>
+                {{ form.radiology_asked }}
+            </div>
         <button class="btn btn-success col-md-12" type="submit">
             <i class="fa fa-save"></i>
         </button>

@@ -7,7 +7,6 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('Core', '0017_auto_20180204_0105'),
         ('Queues', '0017_clinic_admin'),
     ]
 

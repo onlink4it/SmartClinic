@@ -102,6 +102,20 @@ def add_record(request, patient_id):
             medications = form.cleaned_data['prescription']
             for x in medications.all():
                 record.prescription.add(x)
+            lab_tests = form.cleaned_data['lab_tests_asked']
+            for x in lab_tests.all():
+                lab_record = PatientLabTest()
+                lab_record.test = x
+                lab_record.patient = patient
+                lab_record.save()
+                record.lab_tests_asked.add(x)
+            radiology = form.cleaned_data['radiology_asked']
+            for x in radiology.all():
+                radiology_record = PatientRadiology()
+                radiology_record.test = x
+                radiology_record.patient = patient
+                radiology_record.save()
+                record.radiology_asked.add(x)
             return redirect('Records:view_patient', patient_id)
     else:
         return render(request, 'Core/permission_error.html')
@@ -130,6 +144,20 @@ def add_record_for_clinic(request, clinic_id, patient_id):
             medications = form.cleaned_data['prescription']
             for x in medications.all():
                 record.prescription.add(x)
+            lab_tests = form.cleaned_data['lab_tests_asked']
+            for x in lab_tests.all():
+                lab_record = PatientLabTest()
+                lab_record.test = x
+                lab_record.patient = patient
+                lab_record.save()
+                record.lab_tests_asked.add(x)
+            radiology = form.cleaned_data['radiology_asked']
+            for x in radiology.all():
+                radiology_record = PatientRadiology()
+                radiology_record.test = x
+                radiology_record.patient = patient
+                radiology_record.save()
+                record.radiology_asked.add(x)
             return redirect('Records:view_patient_for_clinic', clinic_id, patient_id)
     else:
         return render(request, 'Core/permission_error.html')
@@ -305,6 +333,30 @@ def print_prescription(request, record_id):
 
 
 @login_required(login_url='Core:login_user')
+def print_lab_test(request, record_id):
+    record = get_object_or_404(PatientRecord, id=record_id)
+    if record.patient.instance == get_instance(request):
+        context = {
+            'record': record
+        }
+        return render(request, 'Records/print_lab_test_request.html', context)
+    else:
+        return render(request, 'Core/permission_error.html')
+
+
+@login_required(login_url='Core:login_user')
+def print_radiology(request, record_id):
+    record = get_object_or_404(PatientRecord, id=record_id)
+    if record.patient.instance == get_instance(request):
+        context = {
+            'record': record
+        }
+        return render(request, 'Records/print_radiology_request.html', context)
+    else:
+        return render(request, 'Core/permission_error.html')
+
+
+@login_required(login_url='Core:login_user')
 def new_co(request):
     form = COForm(request.POST or None)
     if form.is_valid():
@@ -432,3 +484,121 @@ def search2(request):
         'search': search,
     }
     return render(request, 'Records/search.html', context)
+
+
+@login_required(login_url='Core:login_user')
+def lab_tests(request):
+    object_list = LabTest.objects.all()
+    context = {
+        'object_list': object_list
+    }
+    return render(request, 'Records/lab_tests.html', context)
+
+
+@login_required(login_url='Core:login_user')
+def radiology(request):
+    object_list = Radiology.objects.all()
+    context = {
+        'object_list': object_list
+    }
+    return render(request, 'Records/radiology.html', context)
+
+
+@login_required(login_url='Core:login_user')
+def add_lab_test(request):
+    title = 'Add New Lab Test'
+    form = LabTestForm(request.POST or None)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.added_by = request.user
+        obj.save()
+        return redirect('Records:lab_tests')
+    context = {
+        'title': title,
+        'form': form,
+    }
+    return render(request, 'Core/form.html', context)
+
+
+@login_required(login_url='Core:login_user')
+def add_radiology(request):
+    title = 'Add New Radiology'
+    form = RadiologyForm(request.POST or None)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.added_by = request.user
+        obj.save()
+        return redirect('Records:radiology')
+    context = {
+        'title': title,
+        'form': form,
+    }
+    return render(request, 'Core/form.html', context)
+
+
+@login_required(login_url='Core:login_user')
+def edit_lab_test(request, pk):
+    title = 'Add New Lab Test'
+    ob = get_object_or_404(LabTest, id=pk)
+    form = LabTestForm(request.POST or None, instance=ob)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.added_by = request.user
+        obj.save()
+        return redirect('Records:lab_tests')
+    context = {
+        'title': title,
+        'form': form,
+    }
+    return render(request, 'Core/form.html', context)
+
+
+@login_required(login_url='Core:login_user')
+def edit_radiology(request, pk):
+    title = 'Add New Radiology'
+    ob = get_object_or_404(Radiology, id=pk)
+    form = RadiologyForm(request.POST or None, instance=pk)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.added_by = request.user
+        obj.save()
+        return redirect('Records:radiology')
+    context = {
+        'title': title,
+        'form': form,
+    }
+    return render(request, 'Core/form.html', context)
+
+
+@login_required(login_url='Core:login_user')
+def write_patient_lab_test(request, pk):
+    title = 'Lab Test Result'
+    obj = get_object_or_404(PatientLabTest, id=pk)
+    form = PatientLabTestForm(request.POST or None, request.FILES or None, instance=obj)
+    if form.is_valid():
+        rec = form.save(commit=False)
+        rec.result_at = date.today()
+        rec.save()
+        return redirect('Records:view_patient', rec.patient.id)
+    context = {
+        'title': title,
+        'form': form,
+    }
+    return render(request, 'Core/form.html', context)
+
+
+@login_required(login_url='Core:login_user')
+def write_patient_radiology(request, pk):
+    title = 'Radiology Result'
+    obj = get_object_or_404(PatientRadiology, id=pk)
+    form = PatientRadiologyForm(request.POST or None, request.FILES or None, instance=obj)
+    if form.is_valid():
+        rec = form.save(commit=False)
+        rec.result_at = date.today()
+        rec.save()
+        return redirect('Records:view_patient', rec.patient.id)
+    context = {
+        'title': title,
+        'form': form,
+    }
+    return render(request, 'Core/form.html', context)

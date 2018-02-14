@@ -23,6 +23,7 @@ class Complain(models.Model):
 
 class LabTest(models.Model):
     name = models.CharField(max_length=128)
+    added_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.name
@@ -30,6 +31,7 @@ class LabTest(models.Model):
 
 class Radiology(models.Model):
     name = models.CharField(max_length=128)
+    added_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.name
@@ -161,6 +163,9 @@ class Patient(models.Model):
 class PatientRecord(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
+    lab_tests_asked = models.ManyToManyField(LabTest, blank=True)
+    radiology_asked = models.ManyToManyField(Radiology, blank=True)
+
     ################### LADIES ######################
     b_p = models.CharField(verbose_name='B/P', max_length=16, null=True, blank=True)
     weight = models.FloatField(verbose_name="Wt.", null=True, blank=True)
@@ -186,7 +191,7 @@ class PatientRecord(models.Model):
 
 class PatientLabTest(models.Model):
     date = models.DateField(auto_now_add=True)
-    patient = models.ForeignKey(PatientRecord, on_delete=models.SET_NULL, null=True)
+    patient = models.ForeignKey(Patient, on_delete=models.SET_NULL, null=True)
     test = models.ForeignKey(LabTest, on_delete=models.SET_NULL, null=True)
     result = models.TextField(null=True)
     result_at = models.DateField(null=True)
@@ -200,7 +205,7 @@ class PatientLabTest(models.Model):
 
 class PatientRadiology(models.Model):
     date = models.DateField(auto_now_add=True)
-    record = models.ForeignKey(PatientRecord, on_delete=models.SET_NULL, null=True)
+    patient = models.ForeignKey(Patient, on_delete=models.SET_NULL, null=True)
     test = models.ForeignKey(Radiology, on_delete=models.SET_NULL, null=True)
     result = models.TextField(null=True)
     result_at = models.DateField(null=True)

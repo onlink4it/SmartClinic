@@ -1,0 +1,17 @@
+{% extends 'Records/print_template.html' %}
+{% block body %}
+    <div class="header col-md-3 col-xs-12" style="text-align: left;">
+        <div class="col-md-6 col-sm-6 col-xs-6 info">التاريخ: {{ record.date.isoformat }}</div>
+        <div class="col-md-6 col-sm-6 col-xs-6 info">الاسم: {{ record.patient.name }}</div>
+        <div class="col-md-12 medicine">
+            <br>
+            <h3 class="center-text" style="font-family: arabic;">Lab Test Request</h3>
+            <br>
+            {% for x in record.lab_tests_asked.all %}
+                - {{ x }}<br><br>
+            {% endfor %}
+        </div>
+        <div class="col-md-12">{{ invoice_setting.footer1 }}</div>
+        <div class="col-md-12">{{ invoice_setting.footer2 }}</div>
+    </div>
+{% endblock %}

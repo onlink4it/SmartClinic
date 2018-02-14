@@ -95,6 +95,9 @@ class AddPatientRecordForm(forms.ModelForm):
             'patient',
         ]
         widgets = {
+            'lab_tests_asked': forms.SelectMultiple(attrs={'class': 'form-control select2', 'multiple': 'multiple'}),
+            'radiology_asked': forms.SelectMultiple(attrs={'class': 'form-control select2', 'multiple': 'multiple'}),
+
             'b_p': forms.TextInput(attrs={'class': 'form-control'}),
             'weight': forms.NumberInput(attrs={'class': 'form-control'}),
             'oedama': forms.NumberInput(attrs={'class': 'form-control'}),
@@ -131,3 +134,43 @@ class COForm(forms.ModelForm):
         widgets = {
             'complain': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+
+class LabTestForm(forms.ModelForm):
+    class Meta:
+        model = LabTest
+        fields = ['name']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
+class RadiologyForm(forms.ModelForm):
+    class Meta:
+        model = Radiology
+        fields = ['name']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
+class PatientLabTestForm(forms.ModelForm):
+    class Meta:
+        model = PatientLabTest
+        fields = [
+            'result',
+            'img1',
+            'img2',
+            'img3',
+        ]
+
+
+class PatientRadiologyForm(forms.ModelForm):
+    class Meta:
+        model = PatientRadiology
+        fields = [
+            'result',
+            'img1',
+            'img2',
+            'img3',
+        ]

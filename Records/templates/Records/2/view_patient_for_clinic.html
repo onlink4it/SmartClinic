@@ -20,6 +20,8 @@
             <li><a data-toggle="tab" href="#nutrition">Nutrition</a></li>
             <li><a data-toggle="tab" href="#immunization">Immunization</a></li>
             <li><a data-toggle="tab" href="#developmental_history">Devleopmental History</a></li>
+            <li><a data-toggle="tab" href="#lab_tests">Lab Tests</a></li>
+            <li><a data-toggle="tab" href="#radiology">Radiology</a></li>
             <li><a data-toggle="tab" href="#records">Records</a></li>
 
         </ul>
@@ -71,7 +73,6 @@
                         {{ form.antenatal_history }}
                     </div>
                 </div>
-
                 <div id="natal_history" class="tab-pane fade">
                     <h5>
                         Natal History
@@ -107,7 +108,6 @@
                         {{ form.doctor }}
                     </div>
                 </div>
-
                 <div id="family_history" class="tab-pane fade">
                     <h5>
                         Family History
@@ -154,7 +154,6 @@
                         {{ form.nutrition }}
                     </div>
                 </div>
-
                 <div id="immunization" class="tab-pane fade">
                     <h5>
                         Immunization
@@ -226,52 +225,101 @@
                         1: {{ form.other_1 }}
                     </div>
                 </div>
-                <div id="developmental_history" class="tab-pane fade">
+                <div id="lab_tests" class="tab-pane fade">
                     <h5>
-                        Developmental History
+                        Lab Tests
                     </h5>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label>
-                            Social Smile:
-                        </label>
-                        {{ form.social_smile }}
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label>
-                            Head Support:
-                        </label>
-                        {{ form.head_support }}
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label>
-                            Set alone:
-                        </label>
-                        {{ form.set_alone }}
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label>
-                            Start Teething:
-                        </label>
-                        {{ form.start_teething }}
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                        <label>
-                            Crawl:
-                        </label>
-                        {{ form.crawl }}
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                        <label>
-                            Walk alone:
-                        </label>
-                        {{ form.walk_alone }}
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <label>
-                            Speech:
-                        </label>
-                        {{ form.speech }}
-                    </div>
+                    <table class="table table-responsive table-striped">
+                        <thead>
+                        <td>Date</td>
+                        <td>Test</td>
+                        <td>Result</td>
+                        <td>Result Date</td>
+                        <td>Imgs</td>
+                        </thead>
+                        <tbody>
+                        {% for x in patient.patientlabtest_set.all %}
+                            <tr>
+                                <td>
+                                    {{ x.date.isoformat }}
+                                </td>
+                                <td>{{ x.test }}</td>
+                                <td>
+                                    {{ x.result }}
+                                    {% if not x.result %}
+                                        <a href="{% url 'Records:write_patient_lab_test' x.id %}"
+                                           class="btn btn-sm btn-flat btn-success"><i class="fa fa-pencil"></i></a>
+                                    {% endif %}
+                                </td>
+                                <td>{{ x.result_at.isoformat }}</td>
+                                <td>
+                                    {% if x.img1 %}
+                                        <a href="{{ x.img1.url }}" target="_blank">
+                                            <img src="{{ x.img1.url }}" width="50px" height="50px">
+                                        </a>
+                                    {% endif %}
+                                    {% if x.img2 %}
+                                        <a href="{{ x.img2.url }}" target="_blank">
+                                            <img src="{{ x.img2.url }}" width="50px" height="50px">
+                                        </a>
+                                    {% endif %}
+                                    {% if x.img3 %}
+                                        <a href="{{ x.img3.url }}" target="_blank">
+                                            <img src="{{ x.img3.url }}" width="50px" height="50px">
+                                        </a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div id="radiology" class="tab-pane fade">
+                    <h5>
+                        Radiology
+                    </h5>
+                    <table class="table table-responsive table-striped">
+                        <thead>
+                        <td>Date</td>
+                        <td>Test</td>
+                        <td>Result</td>
+                        <td>Result Date</td>
+                        <td>Imgs</td>
+                        </thead>
+                        <tbody>
+                        {% for x in patient.patientradiology_set.all %}
+                            <tr>
+                                <td>{{ x.date.isoformat }}</td>
+                                <td>{{ x.test }}</td>
+                                <td>
+                                    {{ x.result }}
+                                    {% if not x.result %}
+                                        <a href="{% url 'Records:write_patient_radiology' x.id %}"
+                                           class="btn btn-sm btn-flat btn-success"><i class="fa fa-pencil"></i></a>
+                                    {% endif %}
+                                </td>
+                                <td>{{ x.result_at.isoformat }}</td>
+                                <td>
+                                    {% if x.img1 %}
+                                        <a href="{{ x.img1.url }}" target="_blank">
+                                            <img src="{{ x.img1.url }}" width="50px" height="50px">
+                                        </a>
+                                    {% endif %}
+                                    {% if x.img2 %}
+                                        <a href="{{ x.img2.url }}" target="_blank">
+                                            <img src="{{ x.img2.url }}" width="50px" height="50px">
+                                        </a>
+                                    {% endif %}
+                                    {% if x.img3 %}
+                                        <a href="{{ x.img3.url }}" target="_blank">
+                                            <img src="{{ x.img3.url }}" width="50px" height="50px">
+                                        </a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
                 <div id="records" class="tab-pane fade">
                     <h5>
@@ -297,6 +345,12 @@
                             </td>
                             <td>
                                 L.T
+                            </td>
+                            <td>
+                                Lab Test
+                            </td>
+                            <td>
+                                Radiology
                             </td>
                             <td>
                                 Med.
@@ -328,12 +382,29 @@
                                     {{ x.l_t }}
                                 </td>
                                 <td>
-                                    {% for y in x.prescription.all %}
-                                        {{ y }}<br>
-                                    {% endfor %}
+                                    {% for y in x.lab_tests_asked.all %}{{ y }}<br>{% endfor %}
+                                    {% if x.lab_tests_asked.all %}
+                                        <a href="{% url 'Records:print_lab_test' x.id %}" class="btn btn-flat btn-sm btn-info"
+                                           title="طباعة" target="_blank">
+                                            <i class="fa fa-print"></i>
+                                        </a>
+                                    {% endif %}
                                 </td>
                                 <td>
-                                    <a href="{% url 'Records:print_prescription' x.id %}" class="btn-sm btn-info" title="طباعة" target="_blank">
+                                    {% for y in x.radiology_asked.all %}{{ y }}<br>{% endfor %}
+                                    {% if x.radiology_asked.all %}
+                                        <a href="{% url 'Records:print_radiology' x.id %}" class="btn btn-flat btn-sm btn-info"
+                                           title="طباعة" target="_blank">
+                                            <i class="fa fa-print"></i>
+                                        </a>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% for y in x.prescription.all %}{{ y }}<br>{% endfor %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'Records:print_prescription' x.id %}" class="btn-sm btn-info"
+                                       title="طباعة" target="_blank">
                                         <i class="fa fa-print"></i>
                                     </a>
                                 </td>
