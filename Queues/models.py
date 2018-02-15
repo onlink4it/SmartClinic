@@ -52,7 +52,9 @@ class Calendar(models.Model):
 class Queue(models.Model):
     date = models.DateField(auto_now_add=True, null=True)
     calendar = models.ForeignKey(Calendar, on_delete=models.CASCADE, null=True)
-    paid = models.FloatField(default=0.0)
+    balance_before = models.FloatField(default=0.0, verbose_name='Old Balance')
+    service_cost = models.FloatField(default=0.0, verbose_name='Service Cost')
+    paid = models.FloatField(default=0.0, verbose_name="Paid")
     refund = models.BooleanField(default=False)
     refund_reason = models.CharField(max_length=128, null=True)
     done = models.BooleanField(default=False)

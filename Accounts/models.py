@@ -33,3 +33,16 @@ class EmployeeTransaction(models.Model):
 
     class Meta:
         ordering = ('-id',)
+
+
+class PatientTransaction(models.Model):
+    date = models.DateField(auto_now_add=True)
+    patient = models.ForeignKey(Patient, on_delete=models.SET_NULL, null=True)
+    service = models.ForeignKey(ClinicServices, on_delete=models.SET_NULL, null=True)
+    credit = models.FloatField(default=0.0)
+    debit = models.FloatField(default=0.0)
+    comment = models.TextField(null=True, blank=True)
+    done_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.patient.name

@@ -170,7 +170,7 @@ def today_calendar_for_clinic(request, clinic_id):
 
 @login_required(login_url='Core:login_user')
 def assign_examination_for_clinic(request, clinic_id, patient_id):
-    clinic = get_object_or_404(Clinic, id=clinic_id,)
+    clinic = get_object_or_404(Clinic, id=clinic_id, )
     patient = get_object_or_404(Queue, id=patient_id)
     if clinic.admin == get_instance(request).admin and patient.calendar.patient.instance == get_instance(request):
         title = 'Assign Date For: ' + patient.calendar.patient.name
@@ -193,7 +193,7 @@ def assign_examination_for_clinic(request, clinic_id, patient_id):
 
 @login_required(login_url='Core:login_user')
 def assign_date_for_patient(request, patient_id):
-    patient = get_object_or_404(Patient, id=patient_id,)
+    patient = get_object_or_404(Patient, id=patient_id, )
     if patient.instance == get_instance(request):
         title = 'Assign Date For: ' + patient.name
         form = AssignDateForPatientForm(request.POST or None)
@@ -222,17 +222,28 @@ def add_to_queue_for_clinic(request, clinic_id, calendar_id):
     calendar = get_object_or_404(Calendar, id=calendar_id)
     if clinic.admin == get_instance(request).admin and calendar.patient.instance == get_instance(request):
         title = "تحديد دور  " + str(calendar.patient.name) + " - "
-        form = QueueForm(request.POST or None, initial={'paid': calendar.task_type.price})
+        form = QueueForm(request.POST or None, initial={'service_cost': calendar.task_type.price,
+                                                            'balance_before': calendar.patient.balance()})
+        form.fields['balance_before'].widget.attrs['readonly'] = True
         if not request.user.is_superuser:
-            form = QueueForm(request.POST or None, initial={'paid': calendar.task_type.price})
-            form.fields['paid'].widget.attrs['readonly'] = True
+            form = QueueForm(request.POST or None, initial={'service_cost': calendar.task_type.price,
+                                                            'balance_before': calendar.patient.balance()})
+            form.fields['service_cost'].widget.attrs['readonly'] = True
         if form.is_valid():
             queue = form.save(commit=False)
             queue.calendar = calendar
             calendar.attend = True
             queue.save()
             calendar.save()
-            add_transaction(clinic=calendar.clinic, by=request.user, income=queue.paid, comment=str(calendar.task_type.name) + ' - ' + str(calendar.patient.name))
+            patient_transaction = PatientTransaction()
+            patient_transaction.credit = queue.service_cost
+            patient_transaction.debit = queue.paid
+            patient_transaction.patient = calendar.patient
+            patient_transaction.comment = queue.calendar.task_type.name
+            patient_transaction.done_by = request.user
+            patient_transaction.save()
+            add_transaction(clinic=calendar.clinic, by=request.user, income=queue.paid,
+                            comment=str(calendar.task_type.name) + ' - ' + str(calendar.patient.name))
             return redirect('Queues:today_calendar_for_clinic', clinic.id)
     else:
         return render(request, 'Core/permission_error.html')
@@ -333,7 +344,7 @@ def patients_json(request):
     instance = get_instance(request)
     q = request.GET.get('q', None)
     if q:
-        patients = Patient.objects.filter(Q(name__icontains=q) | Q(phone__icontains=q),instance=instance)
+        patients = Patient.objects.filter(Q(name__icontains=q) | Q(phone__icontains=q), instance=instance)
         patients = patients.values('id', 'name', 'phone')
         patients = list(patients)
         return JsonResponse(patients, safe=False)

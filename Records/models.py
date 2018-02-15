@@ -156,6 +156,13 @@ class Patient(models.Model):
     walk_alone = models.IntegerField(null=True, blank=True)
     speech = models.IntegerField(null=True, blank=True)
 
+    def balance(self):
+        balance = 0
+        for transaction in self.patienttransaction_set.all():
+            balance -= transaction.credit
+            balance += transaction.debit
+        return balance
+
     def __str__(self):
         return self.name
 

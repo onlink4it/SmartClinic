@@ -58,6 +58,8 @@ class QueueForm(forms.ModelForm):
     class Meta:
         model = Queue
         fields = [
+            'balance_before',
+            'service_cost',
             'paid',
         ]
         widgets = {

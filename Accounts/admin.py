@@ -6,3 +6,4 @@ from .models import *
 # Register your models here.
 admin.site.register(MoneyTransaction)
 admin.site.register(EmployeeTransaction)
+admin.site.register(PatientTransaction)
