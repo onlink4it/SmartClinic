@@ -169,7 +169,7 @@ class Patient(models.Model):
 
 class PatientRecord(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField()
     lab_tests_asked = models.ManyToManyField(LabTest, blank=True)
     radiology_asked = models.ManyToManyField(Radiology, blank=True)
 

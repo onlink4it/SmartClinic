@@ -91,10 +91,10 @@ class AddPatientRecordForm(forms.ModelForm):
     class Meta:
         model = PatientRecord
         exclude = [
-            'date',
             'patient',
         ]
         widgets = {
+            'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'value': date.today()}),
             'lab_tests_asked': forms.SelectMultiple(attrs={'class': 'form-control select2', 'multiple': 'multiple'}),
             'radiology_asked': forms.SelectMultiple(attrs={'class': 'form-control select2', 'multiple': 'multiple'}),
 
