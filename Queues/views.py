@@ -133,6 +133,7 @@ def assign_date_for_clinic(request, clinic_id):
     if clinic.admin == get_instance(request).admin:
         form = AssignDateForm(request.POST or None)
         form.fields['patient'].queryset = Patient.objects.filter(instance=get_instance(request))
+        form.fields['task_type'].querset = ClinicServices.objects.filter(instance=get_instance(request))
         title = 'Assign Date At: ' + str(date.today())
         if form.is_valid():
             entry = form.save(commit=False)
@@ -175,6 +176,7 @@ def assign_examination_for_clinic(request, clinic_id, patient_id):
     if clinic.admin == get_instance(request).admin and patient.calendar.patient.instance == get_instance(request):
         title = 'Assign Date For: ' + patient.calendar.patient.name
         form = AssignConsultantForm(request.POST or None)
+        form.fields['task_type'].queryset = ClinicServices.objects.filter(instance=get_instance(request))
         if form.is_valid():
             entry = form.save(commit=False)
             entry.patient = patient.calendar.patient
@@ -197,6 +199,7 @@ def assign_date_for_patient(request, patient_id):
     if patient.instance == get_instance(request):
         title = 'Assign Date For: ' + patient.name
         form = AssignDateForPatientForm(request.POST or None)
+        form.fields['task_type'].queryset = ClinicServices.objects.filter(instance=get_instance(request))
         if request.user.is_superuser:
             form.fields['clinic'].queryset = Clinic.objects.filter(admin=request.user)
         else:
@@ -292,6 +295,8 @@ def edit_calendar(request, calendar_id):
     calendar = get_object_or_404(Calendar, id=calendar_id)
     title = "تغيير موعد: " + calendar.patient.name + ' بدلاً من: ' + str(calendar.date.isoformat())
     form = EditCalendarDate(request.POST or None, instance=calendar)
+    form.fields['task_type'].queryset = ClinicServices.objects.filter(instance=get_instance(request))
+    form.fields['task_type'].queryset = ClinicServices.objects.filter(instance=get_instance(request))
     if form.is_valid():
         form.save()
         return redirect('Queues:queue_home')
@@ -397,7 +402,7 @@ def new_service(request):
 
 def edit_service(request, pk):
     title = 'تعديل خدمة'
-    form = ClinicServiceForm(request.POST or None, instance=get_object_or_404(Clinic, id=pk))
+    form = ClinicServiceForm(request.POST or None, instance=get_object_or_404(ClinicServices, id=pk))
     if form.is_valid():
         form.save()
         return redirect('Queues:list_services')

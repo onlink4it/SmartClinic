@@ -93,10 +93,12 @@ class EditCalendarDate(forms.ModelForm):
     class Meta:
         model = Calendar
         fields = [
-            'date'
+            'date',
+            'task_type'
         ]
         widgets = {
-            'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'})
+            'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'task_type': forms.Select(attrs={'class': 'form-control'})
         }
 
 
