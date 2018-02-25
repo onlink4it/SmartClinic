@@ -1,22 +1,19 @@
 {% extends 'Core/base.html' %}
 {% block body %}
     <h4 class="center-text">{{ clinic }}</h4>
-    <a href="{% url 'Queues:assign_date_for_clinic' clinic.id %}" class="btn btn-flat btn-primary col-lg-3 col-md-3 col-sm-6 col-xs-6">
-        <i class="fa fa-plus-circle"></i> كشف جديد
-    </a>
-    <a href="{% url 'Records:add_patient_for_clinic' clinic.id %}" class="btn btn-flat btn-info col-lg-3 col-md-3 col-sm-6 col-xs-6">
+    <a href="{% url 'Records:add_patient_for_clinic' clinic.id %}" class="btn btn-flat btn-primary col-lg-4 col-md-4 col-sm-4 col-xs-6">
         <i class="fa fa-user-plus"></i> مريض جديد
     </a>
-    <a href="{% url 'Accounts:add_expense_for_clinic' clinic.id %}" class="btn btn-flat btn-danger col-lg-3 col-md-3 col-sm-6 col-xs-6">
+    <a href="{% url 'Accounts:add_expense_for_clinic' clinic.id %}" class="btn btn-flat btn-danger col-lg-4 col-md-4 col-sm-4 col-xs-6">
         <i class="fa fa-minus-circle"></i> مصروفات
     </a>
-    <a href="{% url 'Accounts:add_income_for_clinic' clinic.id %}" class="btn btn-flat btn-success col-lg-3 col-md-3 col-sm-6 col-xs-6">
+    <a href="{% url 'Accounts:add_income_for_clinic' clinic.id %}" class="btn btn-flat btn-success col-lg-4 col-md-4 col-sm-4 col-xs-6">
         <i class="fa fa-plus-circle"></i> دخل عام
     </a>
     <br>
     <div class="panel col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="panel-heading">
-            <i class="fa fa-calendar"></i> Calendar
+            <i class="fa fa-calendar"></i> مواعيد اليوم
         </div>
         <div class="panel-body" style="overflow-x:auto;">
             <table class="table table-responsive">
@@ -79,7 +76,7 @@
     </div>
     <div class="panel col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="panel-heading">
-            <i class="fa fa-list-ol"></i> Queues
+            <i class="fa fa-list-ol"></i> قائمة الانتظار
         </div>
         <div class="panel-body" style="overflow-x:auto;">
             <table class="table table-responsive">

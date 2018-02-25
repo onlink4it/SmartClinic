@@ -25,7 +25,7 @@
     <h4 class="center-text">
         <i class="fa fa-pencil"></i> Edit Patient - <b>Name:</b> {{ patient.name }}
     </h4>
-    <a href="{% url 'Records:add_record_for_clinic' clinic_id patient.id %}" class="btn btn-primary">
+    <a href="{% url 'Records:add_record_for_clinic' clinic_id patient.id %}" class="btn btn-flat btn-primary">
         <i class="fa fa-hospital-o"></i>
         Add Record
     </a>
@@ -581,7 +581,7 @@
                                     {{ x.h_b_percent }}
                                 </td>
                                 <td>
-                                    {{ x.comments_complains | safe }}
+                                    {{ x.comments_complain | safe }}
                                 </td>
                                 <td>
                                     {% for y in x.lab_tests_asked.all %}{{ y }}<br>{% endfor %}
@@ -616,7 +616,7 @@
                     </table>
                 </div>
             </div>
-            <button class="btn btn-success col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <button class="btn btn-flat btn-success col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <i class="fa fa-save"></i>
             </button>
         </div>

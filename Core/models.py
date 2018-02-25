@@ -68,3 +68,12 @@ class Instance(models.Model):
             return True
         else:
             return False
+
+
+class Version(models.Model):
+    date = models.DateField(null=True)
+    name = models.CharField(max_length=128)
+    news = models.TextField()
+
+    def __str__(self):
+        return self.name

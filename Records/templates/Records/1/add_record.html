@@ -25,7 +25,7 @@
         <i class="fa fa-hospital-o"></i>
         Add Record - ID: {{ patient.id }} - Patient: {{ patient.name }}
     </h4>
-    <a href="{% url 'Records:view_patient' patient.id %}" class="btn btn-primary">
+    <a href="{% url 'Records:view_patient' patient.id %}" class="btn btn-flat btn-primary">
         <i class="fa fa-undo"></i>
         Back To Patient
     </a>
@@ -130,7 +130,7 @@
                 {{ form.radiology_asked }}
             </div>
 
-            <button class="btn btn-success col-lg-12 col-md-12 col-sm-12 col-xs-12" type="submit">
+            <button class="btn btn-flat btn-success col-lg-12 col-md-12 col-sm-12 col-xs-12" type="submit">
                 <i class="fa fa-save"></i>
             </button>
         </div>

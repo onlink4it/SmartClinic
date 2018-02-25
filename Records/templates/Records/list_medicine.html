@@ -1,55 +1,58 @@
 {% extends 'Core/base.html' %}
 {% block body %}
     <div class="col-md-12">
-        <a href="{% url 'Records:new_medicine' %}" class="btn btn-info">
+        <a href="{% url 'Records:new_medicine' %}" class="btn btn-primary btn-flat">
             <i class="fa fa-plus-circle"></i> Add Medicine
         </a>
-        <div class="well col-md-12" style="overflow-x:auto;">
-            <table class="table table-responsive table-hover">
-                <thead>
-                <td>Medicine</td>
-                <td></td>
-                </thead>
-                <tbody>
-                {% for x in medicine %}
-                    <tr>
-                        <td>
-                            {{ x }}
-                        </td>
-                        <td>
-                            <div class="btn-group-sm">
-                                {% if request.user == x.added_by %}
-                                    <a href="{% url 'Records:edit_medicine' x.id %}" class="btn-sm btn-info">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                {% endif %}
-                            </div>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-
-            {% if medicine.has_other_pages %}
-                <ul class="pagination center-item">
-                    {% if medicine.has_previous %}
-                        <li><a href="?page={{ medicine.previous_page_number }}">&laquo;</a></li>
-                    {% else %}
-                        <li class="disabled"><span>&laquo;</span></li>
-                    {% endif %}
-                    {% for i in medicine.paginator.page_range %}
-                        {% if medicine.number == i %}
-                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                        {% else %}
-                            <li><a href="?page={{ i }}">{{ i }}</a></li>
-                        {% endif %}
+        <div class="box box-primary" style="overflow-x:auto;">
+            <div class="box-header"><i class="fa fa-medkit"></i> Medicines</div>
+            <div class="box-body">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                    <td>Medicine</td>
+                    <td></td>
+                    </thead>
+                    <tbody>
+                    {% for x in medicine %}
+                        <tr>
+                            <td>
+                                {{ x }}
+                            </td>
+                            <td>
+                                <div class="btn-group-sm">
+                                    {% if request.user == x.added_by %}
+                                        <a href="{% url 'Records:edit_medicine' x.id %}" class="btn-sm btn-info">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </td>
+                        </tr>
                     {% endfor %}
-                    {% if medicine.has_next %}
-                        <li><a href="?page={{ medicine.next_page_number }}">&raquo;</a></li>
-                    {% else %}
-                        <li class="disabled"><span>&raquo;</span></li>
-                    {% endif %}
-                </ul>
-            {% endif %}        </div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+                {% if medicine.has_other_pages %}
+                    <ul class="pagination center-item">
+                        {% if medicine.has_previous %}
+                            <li><a href="?page={{ medicine.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %}
+                        {% for i in medicine.paginator.page_range %}
+                            {% if medicine.number == i %}
+                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if medicine.has_next %}
+                            <li><a href="?page={{ medicine.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
     </div>
 {% endblock %}

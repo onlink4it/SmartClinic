@@ -277,7 +277,7 @@ desired effect
             <!-- search form (Optional) -->
             <form action="{% url 'Records:search' %}" method="get" class="sidebar-form">
                 <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <input type="text" name="q" class="form-control" placeholder="بحث بإسم او تليفون المريض">
                     <span class="input-group-btn">
               <button type="submit" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
               </button>
@@ -307,9 +307,17 @@ desired effect
                             </ul>
                         </li>
 
-                        <li class="{% if url_name == 'search' or url_name == 'add_patient' %}active{% endif %}"><a
-                                href="{% url 'Records:search' %}"><i class="fa fa-users"></i>
-                            <span>Patients</span></a>
+                        <li class="treeview{% if url_name == 'search' or url_name == 'add_patient' %} active{% endif %}">
+                            <a href="#"><i class="fa fa-users"></i> <span>Patients</span>
+                                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{% url 'Records:add_patient' %}"><i class='fa fa-user-plus'></i>Add Patient</a></li>
+                                <li><a href="{% url 'Records:search' %}"><i class='fa fa-search'></i>Search</a>
+                                </li>
+                            </ul>
                         </li>
                         {% if request.user.is_superuser %}
                             <li class="treeview {% if url_name == 'reports' or url_name == 'employee_balance' or url_name == 'withdraw_cash_from_employee' %}active{% endif %}">
@@ -436,7 +444,7 @@ desired effect
     <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-            Ver. 2.0.5
+            Ver. 2.0.6
         </div>
         <!-- Default to the left -->
         <strong>Copyright &copy; 2018 <a href="#">ON-Link</a>.</strong> All rights reserved.

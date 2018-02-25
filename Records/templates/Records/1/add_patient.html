@@ -3,12 +3,12 @@
     {{ form.media }}
 {% endblock %}
 {% block body %}
-    <div class="modal" id="New_CO">
+    <div class="modal" id="New_Complain">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form class="form-horizontal new_clinic_form" method="post"
                       action="" id="new_clinic_form" enctype="multipart/form-data">
-                    <div class="modal-header">New CO.</div>
+                    <div class="modal-header">New Complain.</div>
                     <div class="modal-body">
                         {% csrf_token %}
                         {{ form2 }}
@@ -30,7 +30,7 @@
         {% csrf_token %}
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#personal_info">Personal Info</a></li>
-            <li><a data-toggle="tab" href="#co">CO</a></li>
+            <li><a data-toggle="tab" href="#co">Complains</a></li>
             <li><a data-toggle="tab" href="#relevant_family_history">Relevant Family History</a></li>
             <li><a data-toggle="tab" href="#previous_obstetris_history">Previous Obstetris History</a></li>
             <li><a data-toggle="tab" href="#investigations">Investigations</a></li>
@@ -45,13 +45,13 @@
                     </h5>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <label>
-                            Code
+                            الكود
                         </label>
                         {{ form.code }}
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <label>
-                            Name
+                            الاسم
                         </label>
                         {{ form.name }}
                     </div>
@@ -385,7 +385,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-success col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <button class="btn btn-success btn-flat col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <i class="fa fa-save"></i>
             </button>
         </div>

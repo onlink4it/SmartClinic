@@ -70,7 +70,7 @@ class QueueForm(forms.ModelForm):
 class ClinicForm(forms.ModelForm):
     class Meta:
         model = Clinic
-        exclude = ['admin']
+        exclude = ['admin', 'examination_fees', 'consultant_fees']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'phone': forms.NumberInput(attrs={'class': 'form-control'}),

@@ -24,48 +24,46 @@
         </div>
     {% endfor %}
     <div class="col-md-12">
-        <a href="{% url 'Queues:new_clinic' %}" class="btn btn-info">
+        <a href="{% url 'Queues:new_clinic' %}" class="btn btn-flat btn-primary">
             <i class="fa fa-plus-circle"></i> Add Clinic
         </a>
-        <div class="well col-md-12">
-            <table class="table table-responsive table-hover" id="table1">
-                <thead>
-                <td>Clinic</td>
-                <td>Phone</td>
-                <td>Address</td>
-                </thead>
-                <tbody>
-                {% for x in clinics %}
-                    <tr>
-                        <td>
-                            {{ x.name }}
-                        </td>
-                        <td>
-                            {{ x.phone }}
-                        </td>
-                        <td>
-                            {{ x.address }}
-                        </td>
-                        <td>
-                            {{ x.examination_fees }}
-                        </td>
-                        <td>
-                            {{ x.consultant_fees }}
-                        </td>
-                        <td>
-                            <div class="btn-group-sm">
-                                <a href="{% url 'Queues:edit_clinic' x.id %}" class="btn-sm btn-info">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a data-toggle="modal" data-target="#{{ x.id }}" class="btn-sm btn-danger">
-                                    <i class="fa fa-remove"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+        <div class="box box-primary">
+            <div class="box-header"><i class="fa fa-hospital-o"></i> My Clinics</div>
+            <div class="box-body">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                    <td>Clinic</td>
+                    <td>Phone</td>
+                    <td>Address</td>
+                    </thead>
+                    <tbody>
+                    {% for x in clinics %}
+                        <tr>
+                            <td>
+                                {{ x.name }}
+                            </td>
+                            <td>
+                                {{ x.phone }}
+                            </td>
+                            <td>
+                                {{ x.address }}
+                            </td>
+                            <td>
+                                <div class="btn-group-sm">
+                                    <a href="{% url 'Queues:edit_clinic' x.id %}" class="btn btn-flat btn-sm btn-info">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a data-toggle="modal" data-target="#{{ x.id }}"
+                                       class="btn btn-flat btn-sm btn-danger">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 {% endblock %}

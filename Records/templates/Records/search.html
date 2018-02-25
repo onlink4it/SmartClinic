@@ -27,7 +27,7 @@
         <i class="fa fa-search"></i> {{ title }}
     </h4>
     {% if not search %}
-        <a href="{% url 'Records:add_patient' %}" class="btn btn-primary">
+        <a href="{% url 'Records:add_patient' %}" class="btn btn-flat btn-primary">
             <i class="fa fa-plus-circle"></i>
             Add Patient
         </a>
@@ -37,7 +37,7 @@
         {% csrf_token %}
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-mobile"></i> </span>
-            <input type="number" class="form-control" name="id">
+            <input type="number" class="form-control" name="id" placeholder="بحث بالتليفون">
             <span class="input-group-btn">
                     <button class="btn btn-default" type="submit">
                         <i class="fa fa-search"></i>
@@ -49,7 +49,7 @@
         {% csrf_token %}
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-user"></i> </span>
-            <input type="text" class="form-control" name="name">
+            <input type="text" class="form-control" name="name" placeholder="بحث بالاسم">
             <span class="input-group-btn">
                     <button class="btn btn-default" type="submit">
                         <i class="fa fa-search"></i>

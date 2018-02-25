@@ -2,14 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ac9efbb-7bb6-4d12-a918-ae630c37ecc3" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/Smart_Clinic_Mix.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Records/templates/Records/add_patient.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Records/templates/Records/add_record.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Records/templates/Records/view_patient.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Accounts/templates/Accounts/employee_report.html" afterPath="$PROJECT_DIR$/Accounts/templates/Accounts/employee_report.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Accounts/templates/Accounts/report.html" afterPath="$PROJECT_DIR$/Accounts/templates/Accounts/report.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Core/admin.py" afterPath="$PROJECT_DIR$/Core/admin.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Core/models.py" afterPath="$PROJECT_DIR$/Core/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Core/templates/Core/base.html" afterPath="$PROJECT_DIR$/Core/templates/Core/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Core/templates/Core/form.html" afterPath="$PROJECT_DIR$/Core/templates/Core/form.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Core/templates/Core/list_employees.html" afterPath="$PROJECT_DIR$/Core/templates/Core/list_employees.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Core/templates/Core/multi_form.html" afterPath="$PROJECT_DIR$/Core/templates/Core/multi_form.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Queues/forms.py" afterPath="$PROJECT_DIR$/Queues/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Queues/templates/Queues/list_services.html" afterPath="$PROJECT_DIR$/Queues/templates/Queues/list_services.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Queues/views.py" afterPath="$PROJECT_DIR$/Queues/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Queues/templates/Queues/calendar.html" afterPath="$PROJECT_DIR$/Queues/templates/Queues/calendar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Queues/templates/Queues/list_clinics.html" afterPath="$PROJECT_DIR$/Queues/templates/Queues/list_clinics.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Queues/templates/Queues/today_tasks.html" afterPath="$PROJECT_DIR$/Queues/templates/Queues/today_tasks.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Records/templates/Records/1/add_patient.html" afterPath="$PROJECT_DIR$/Records/templates/Records/1/add_patient.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Records/templates/Records/1/add_record.html" afterPath="$PROJECT_DIR$/Records/templates/Records/1/add_record.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Records/templates/Records/1/add_record_for_clinic.html" afterPath="$PROJECT_DIR$/Records/templates/Records/1/add_record_for_clinic.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Records/templates/Records/1/view_patient.html" afterPath="$PROJECT_DIR$/Records/templates/Records/1/view_patient.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Records/templates/Records/1/view_patient_for_clinic.html" afterPath="$PROJECT_DIR$/Records/templates/Records/1/view_patient_for_clinic.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Records/templates/Records/2/add_patient.html" afterPath="$PROJECT_DIR$/Records/templates/Records/2/add_patient.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Records/templates/Records/2/add_record.html" afterPath="$PROJECT_DIR$/Records/templates/Records/2/add_record.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Records/templates/Records/2/add_record_for_clinic.html" afterPath="$PROJECT_DIR$/Records/templates/Records/2/add_record_for_clinic.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Records/templates/Records/2/view_patient.html" afterPath="$PROJECT_DIR$/Records/templates/Records/2/view_patient.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Records/templates/Records/2/view_patient_for_clinic.html" afterPath="$PROJECT_DIR$/Records/templates/Records/2/view_patient_for_clinic.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Records/templates/Records/list_medicine.html" afterPath="$PROJECT_DIR$/Records/templates/Records/list_medicine.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Records/templates/Records/search.html" afterPath="$PROJECT_DIR$/Records/templates/Records/search.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,56 +42,22 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Queues/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="404" column="92" lean-forward="false" selection-start-line="404" selection-start-column="92" selection-end-line="404" selection-end-column="92" />
+            <state relative-caret-position="-10">
+              <caret line="316" column="62" lean-forward="false" selection-start-line="316" selection-start-column="54" selection-end-line="316" selection-end-column="62" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Core/templates/Core/base.html">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Records/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="438" column="22" lean-forward="false" selection-start-line="438" selection-start-column="22" selection-end-line="438" selection-end-column="22" />
+            <state relative-caret-position="230">
+              <caret line="184" column="21" lean-forward="false" selection-start-line="184" selection-start-column="4" selection-end-line="184" selection-end-column="21" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Queues/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="18" column="85" lean-forward="false" selection-start-line="18" selection-start-column="73" selection-end-line="18" selection-end-column="85" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list_services.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Queues/templates/Queues/list_services.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="29" column="53" lean-forward="false" selection-start-line="29" selection-start-column="53" selection-end-line="29" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Queues/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="100" column="70" lean-forward="true" selection-start-line="100" selection-start-column="70" selection-end-line="100" selection-end-column="70" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -83,7 +70,18 @@
       <find>add_to</find>
       <find>P</find>
       <find>Edit</find>
+      <find>Ver</find>
       <find>assign</find>
+      <find>queue_hom</find>
+      <find>new_clini</find>
+      <find>queue_home</find>
+      <find>new_clinic</find>
+      <find>emplo</find>
+      <find>CO</find>
+      <find>search</find>
+      <find>patienttra</find>
+      <find>fa fa-sa</find>
+      <find>employee</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -93,10 +91,35 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Accounts/models.py" />
-        <option value="$PROJECT_DIR$/Queues/forms.py" />
         <option value="$PROJECT_DIR$/Queues/templates/Queues/list_services.html" />
+        <option value="$PROJECT_DIR$/Core/views.py" />
         <option value="$PROJECT_DIR$/Queues/views.py" />
+        <option value="$PROJECT_DIR$/Queues/forms.py" />
+        <option value="$PROJECT_DIR$/Queues/templates/Queues/list_clinics.html" />
+        <option value="$PROJECT_DIR$/Core/templates/Core/list_employees.html" />
+        <option value="$PROJECT_DIR$/Records/templates/Records/search.html" />
         <option value="$PROJECT_DIR$/Core/templates/Core/base.html" />
+        <option value="$PROJECT_DIR$/Records/templates/Records/list_medicine.html" />
+        <option value="$PROJECT_DIR$/Accounts/templates/Accounts/report.html" />
+        <option value="$PROJECT_DIR$/Core/templates/Core/form.html" />
+        <option value="$PROJECT_DIR$/Core/templates/Core/multi_form.html" />
+        <option value="$PROJECT_DIR$/Accounts/templates/Accounts/employee_report.html" />
+        <option value="$PROJECT_DIR$/Queues/templates/Queues/calendar.html" />
+        <option value="$PROJECT_DIR$/Queues/templates/Queues/today_tasks.html" />
+        <option value="$PROJECT_DIR$/Core/models.py" />
+        <option value="$PROJECT_DIR$/Core/admin.py" />
+        <option value="$PROJECT_DIR$/Records/templates/Records/1/add_patient.html" />
+        <option value="$PROJECT_DIR$/Records/templates/Records/1/add_record.html" />
+        <option value="$PROJECT_DIR$/Records/templates/Records/1/add_record_for_clinic.html" />
+        <option value="$PROJECT_DIR$/Records/templates/Records/1/view_patient.html" />
+        <option value="$PROJECT_DIR$/Records/templates/Records/1/view_patient_for_clinic.html" />
+        <option value="$PROJECT_DIR$/Records/templates/Records/add_patient.html" />
+        <option value="$PROJECT_DIR$/Records/templates/Records/add_record.html" />
+        <option value="$PROJECT_DIR$/Records/templates/Records/2/add_patient.html" />
+        <option value="$PROJECT_DIR$/Records/templates/Records/2/add_record.html" />
+        <option value="$PROJECT_DIR$/Records/templates/Records/2/add_record_for_clinic.html" />
+        <option value="$PROJECT_DIR$/Records/templates/Records/2/view_patient.html" />
+        <option value="$PROJECT_DIR$/Records/templates/Records/2/view_patient_for_clinic.html" />
       </list>
     </option>
   </component>
@@ -135,92 +158,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Smart_Clinic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Smart_Clinic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Smart_Clinic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Records" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Smart_Clinic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Smart_Clinic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Queues" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Smart_Clinic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Smart_Clinic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Queues" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Queues" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Smart_Clinic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Smart_Clinic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Smart_Clinic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Smart_Clinic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Core" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -312,9 +249,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -322,7 +258,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32961783" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -346,37 +282,11 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Records/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="160" column="42" lean-forward="false" selection-start-line="160" selection-start-column="32" selection-end-line="160" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Accounts/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="37" column="7" lean-forward="false" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="7" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Queues/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="41" column="7" lean-forward="true" selection-start-line="41" selection-start-column="7" selection-end-line="41" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Queues/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="100" column="70" lean-forward="true" selection-start-line="100" selection-start-column="70" selection-end-line="100" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -390,16 +300,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Queues/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="18" column="85" lean-forward="false" selection-start-line="18" selection-start-column="73" selection-end-line="18" selection-end-column="85" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Queues/templates/Queues/list_services.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -408,18 +308,289 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Queues/views.py">
+    <entry file="file://$PROJECT_DIR$/Queues/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="404" column="92" lean-forward="false" selection-start-line="404" selection-start-column="92" selection-end-line="404" selection-end-column="92" />
+        <state relative-caret-position="97">
+          <caret line="17" column="67" lean-forward="false" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Queues/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="75" column="72" lean-forward="true" selection-start-line="75" selection-start-column="72" selection-end-line="75" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Queues/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="41" column="7" lean-forward="true" selection-start-line="41" selection-start-column="7" selection-end-line="41" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10">
+          <caret line="91" column="32" lean-forward="true" selection-start-line="91" selection-start-column="32" selection-end-line="91" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Queues/templates/Queues/list_clinics.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="66" column="14" lean-forward="false" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="14" />
+          <folding>
+            <element signature="e#1343#2782#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Records/templates/Records/search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10">
+          <caret line="47" column="19" lean-forward="false" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Queues/templates/Queues/queue_home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Accounts/templates/Accounts/report.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="16" column="48" lean-forward="false" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Core/templates/Core/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="438" column="22" lean-forward="false" selection-start-line="438" selection-start-column="22" selection-end-line="438" selection-end-column="22" />
+        <state relative-caret-position="290">
+          <caret line="279" column="107" lean-forward="false" selection-start-line="279" selection-start-column="107" selection-end-line="279" selection-end-column="107" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/templates/Core/list_employees.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="6" column="20" lean-forward="false" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Records/templates/Records/list_medicine.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="34" column="14" lean-forward="false" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+          <folding>
+            <element signature="e#270#294#0#HTML" expanded="true" />
+            <element signature="e#428#1443#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/templates/Core/multi_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="61" lean-forward="false" selection-start-line="9" selection-start-column="61" selection-end-line="9" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Accounts/templates/Accounts/employee_report.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-117">
+          <caret line="29" column="62" lean-forward="true" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/templates/Core/form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="20" column="59" lean-forward="false" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Queues/templates/Queues/calendar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+          <folding>
+            <element signature="e#576#600#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Records/templates/Records/view_patient.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="8" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Queues/templates/Queues/today_tasks.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="78" column="56" lean-forward="false" selection-start-line="78" selection-start-column="56" selection-end-line="78" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Records/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="184" column="21" lean-forward="false" selection-start-line="184" selection-start-column="4" selection-end-line="184" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Records/templates/Records/1/add_patient.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="387" column="46" lean-forward="false" selection-start-line="387" selection-start-column="46" selection-end-line="387" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Records/templates/Records/1/add_record.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="132" column="40" lean-forward="false" selection-start-line="132" selection-start-column="40" selection-end-line="132" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Records/templates/Records/add_patient.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="269" column="57" lean-forward="false" selection-start-line="269" selection-start-column="57" selection-end-line="269" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Records/templates/Records/add_record.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="53" column="57" lean-forward="false" selection-start-line="53" selection-start-column="57" selection-end-line="53" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Records/templates/Records/2/add_record.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="97" column="47" lean-forward="false" selection-start-line="97" selection-start-column="47" selection-end-line="97" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Records/templates/Records/2/add_patient.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="268" column="47" lean-forward="false" selection-start-line="268" selection-start-column="47" selection-end-line="268" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Records/templates/Records/1/view_patient_for_clinic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="618" column="39" lean-forward="false" selection-start-line="618" selection-start-column="39" selection-end-line="618" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Records/templates/Records/1/view_patient.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="699" column="30" lean-forward="true" selection-start-line="699" selection-start-column="30" selection-end-line="699" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Records/templates/Records/1/add_record_for_clinic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="132" column="51" lean-forward="false" selection-start-line="132" selection-start-column="51" selection-end-line="132" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="78" column="24" lean-forward="false" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Records/templates/Records/2/add_record_for_clinic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="97" column="47" lean-forward="false" selection-start-line="97" selection-start-column="47" selection-end-line="97" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Records/templates/Records/2/view_patient_for_clinic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="416" column="51" lean-forward="false" selection-start-line="416" selection-start-column="51" selection-end-line="416" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Records/templates/Records/2/view_patient.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="465" column="51" lean-forward="false" selection-start-line="465" selection-start-column="51" selection-end-line="465" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Smart_Clinic/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2880">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Queues/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10">
+          <caret line="316" column="62" lean-forward="false" selection-start-line="316" selection-start-column="54" selection-end-line="316" selection-end-column="62" />
           <folding />
         </state>
       </provider>
