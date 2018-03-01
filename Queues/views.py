@@ -227,11 +227,11 @@ def add_to_queue_for_clinic(request, clinic_id, calendar_id):
         title = "تحديد دور  " + str(calendar.patient.name) + " - "
         form = QueueForm(request.POST or None, initial={'service_cost': calendar.task_type.price,
                                                             'balance_before': calendar.patient.balance()})
-        form.fields['balance_before'].widget.attrs['readonly'] = True
         if not request.user.is_superuser:
             form = QueueForm(request.POST or None, initial={'service_cost': calendar.task_type.price,
                                                             'balance_before': calendar.patient.balance()})
             form.fields['service_cost'].widget.attrs['readonly'] = True
+        form.fields['balance_before'].widget.attrs['readonly'] = True
         if form.is_valid():
             queue = form.save(commit=False)
             queue.calendar = calendar
